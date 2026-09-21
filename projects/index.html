@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="google-site-verification" content="heVo5-MxaPvntQwwciXHihH2LsQz2KBCcofxtWIUek8" />
-    <link rel="canonical" href="https://skyeaglestudio.com/apps">
-    <meta property="og:title" content="Native iOS & Android Mobile Apps | SkyEagle Studio">
-    <meta property="og:description" content="We design and engineer high-performance mobile applications on Apple iOS and Android using Google's Flutter framework.">
-    <meta property="og:url" content="https://skyeaglestudio.com/apps">
+    <link rel="canonical" href="https://skyeaglestudio.com/projects">
+    <meta property="og:title" content="Our Projects & Software Products | SkyEagle Studio">
+    <meta property="og:description" content="Explore SkyEagle Studio's portfolio. Real websites, bespoke business software systems, iOS/Android mobile apps, SaaS, and AI product integrations.">
+    <meta property="og:url" content="https://skyeaglestudio.com/projects">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://skyeaglestudio.com/images/logo.png">
     <meta name="twitter:card" content="summary_large_image">
-<title>Native iOS & Android Mobile Apps | SkyEagle Studio</title>
+<title>Our Projects & Software Products | SkyEagle Studio</title>
     <!-- SEO Optimization -->
-    <meta name="description" content="We design and engineer high-performance mobile applications on Apple iOS and Android using Google's Flutter framework.">
+    <meta name="description" content="Explore SkyEagle Studio's portfolio. Real websites, bespoke business software systems, iOS/Android mobile apps, SaaS, and AI product integrations.">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="images/logo.png">
-    <script src="theme-switcher.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../images/logo.png">
+    <script src="../theme-switcher.js"></script>
 </head>
 <body>
     <!-- Loading Screen Transition -->
@@ -62,7 +62,7 @@
     <nav>
         <div class="logo-container">
             <a href="/" style="text-decoration: none;">
-                <div class="logo"><img src="images/logo.png" alt="SkyEagle Studio" class="header-logo">SkyEagle Studio</div>
+                <div class="logo"><img src="../images/logo.webp" alt="SkyEagle Studio" class="header-logo" width="512" height="288">SkyEagle Studio</div>
             </a>
             <div class="logo-subtitle">SOFTWARE STUDIO</div>
         </div>
@@ -86,51 +86,53 @@
     </nav>
 
     <main style="padding-top: 50px;">
-        <!-- Header -->
-        <section class="experience" style="background:transparent; padding:60px 20px 20px;">
-            <span class="portfolio-badge" style="position:static; display:inline-block; margin-bottom:15px;">Mobile Apps</span>
-            <h1 class="experience-title" style="font-size: 2.5rem; margin-bottom:20px; line-height:1.2;">iOS & Android<br>Mobile Applications</h1>
-            <p style="text-align: center; color: var(--gray-light); max-width:700px; margin: 0 auto 40px; font-size:1.1rem; line-height:1.6;">We design and engineer high-performance mobile applications on Apple iOS and Android using Google's Flutter framework.</p>
-        </section>
-
-        <!-- Capabilities -->
-        <section class="experience bg-alternate" style="border-top:1px solid #111; border-bottom:1px solid #111; padding:80px 20px;">
-            <div style="max-width:1100px; margin:0 auto;">
-                <h2 style="font-family:var(--font-heading); font-size:1.5rem; color:#fff; margin-bottom:40px; text-align:center;">Mobile Engineering Stack</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fab fa-flutter"></i></div>
-                        <h3 class="service-title">Flutter Development</h3>
-                        <p class="service-desc">Cross-platform development compiling to native arm64 machine instructions for single-codebase speed.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fab fa-apple"></i></div>
-                        <h3 class="service-title">Apple iOS Native</h3>
-                        <p class="service-desc">Clean layouts conforming to Apple's Human Interface Guidelines for premium look & feel.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fab fa-android"></i></div>
-                        <h3 class="service-title">Google Android Native</h3>
-                        <p class="service-desc">Material design components compiled for efficient memory cycles across Android devices.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-fire"></i></div>
-                        <h3 class="service-title">Firebase Real-time Sync</h3>
-                        <p class="service-desc">Authentication, real-time message sync, database checks, push alerts, and offline caches.</p>
+        <section class="demos">
+            <h1 class="demos-title">Completed Projects & Products</h1>
+            <p style="text-align: center; color: var(--gray-light); max-width:600px; margin:-20px auto 45px;">Explore our catalog of 20+ real-world products, custom corporate portals, SaaS systems, and bespoke business tools.</p>
+            
+            <!-- Dynamic Search & Filters Area -->
+            <div class="search-filter-container">
+                <div class="search-box-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="projectSearch" placeholder="Search by project name, tech stacks (e.g. Next.js, Flutter), or industry...">
+                </div>
+                
+                <div class="filters-scroll-wrapper">
+                    <div class="filters-grid">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="websites">Websites</button>
+                        <button class="filter-btn" data-filter="software">Software</button>
+                        <button class="filter-btn" data-filter="saas">SaaS</button>
+                        <button class="filter-btn" data-filter="mobile apps">Mobile Apps</button>
+                        <button class="filter-btn" data-filter="ai">AI</button>
+                        <button class="filter-btn" data-filter="e-commerce">E-Commerce</button>
+                        <button class="filter-btn" data-filter="healthcare">Healthcare</button>
+                        <button class="filter-btn" data-filter="real estate">Real Estate</button>
+                        <button class="filter-btn" data-filter="business">Business</button>
                     </div>
                 </div>
             </div>
+
+            <!-- Alternating project case study list -->
+            <div class="project-split-list" id="projectsGrid" style="margin-top: 40px;">
+                <!-- Loaded dynamically by JavaScript -->
+            </div>
+
+            <!-- No Results Found Indicator -->
+            <div class="no-results" id="noResultsAlert">
+                <i class="fas fa-face-frown" style="font-size: 3rem; color: var(--secondary); margin-bottom: 15px; display:block;"></i>
+                <p>No projects match your current filters or search terms.</p>
+            </div>
         </section>
 
-        <!-- Dynamic Mobile Projects -->
-        <section class="experience" style="padding: 100px 20px;">
-            <div style="max-width:1100px; margin:0 auto;">
-                <h2 style="font-family:var(--font-heading); font-size:1.5rem; color:#fff; margin-bottom:40px; text-align:center;">Mobile Product Portfolio</h2>
-                <div class="demos-grid" id="mobileProjectsGrid">
-                    <!-- Loaded dynamically -->
-                </div>
-                <div id="noMobileProjects" style="display:none; text-align:center; padding:40px 0; color:#666;">
-                    <p>Specific mobile screenshots are currently being formatted. Submit an inquiry to view our case demos.</p>
+        <!-- Dynamic CTA -->
+        <section class="experience" style="padding: 100px 20px; text-align:center;">
+            <div style="max-width:700px; margin:0 auto;">
+                <h2 style="font-family: var(--font-heading); font-size:2rem; color:#fff; margin-bottom:20px;">Need a Tailored System Built?</h2>
+                <p style="color:#888; font-size:1rem; margin-bottom:35px; line-height:1.6;">Let's consult on your database parameters, dashboards, third-party integrations, and scoped features.</p>
+                <div class="cta-buttons" style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+                    <a href="/contact" class="btn btn-primary"><span>Start Your Project</span></a>
+                    <a href="https://wa.me/923188791637?text=Hi!%20I%20want%20to%20discuss%20a%20project" target="_blank" class="btn btn-secondary"><span>WhatsApp Chat</span></a>
                 </div>
             </div>
         </section>
@@ -138,7 +140,7 @@
 
     <!-- Footer -->
     <footer>
-        <img src="images/logo.png" alt="SkyEagle Studio Logo" class="footer-logo"><div class="footer-team">SkyEagle Studio</div>
+        <img src="../images/logo.webp" alt="SkyEagle Studio Logo" class="footer-logo" width="512" height="288"><div class="footer-team">SkyEagle Studio</div>
         <p style="color: #aaa; margin-bottom: 20px; font-size: 1.1rem;">Digital products, software and AI solutions built for real businesses.</p>
         <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 20px;">
             <a href="/" style="color: #888; text-decoration: none; font-size: 0.9rem;">Home</a>
@@ -164,36 +166,13 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="projects-data.js"></script>
+    <script src="../projects-data.js"></script>
         <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="firebase-init.js"></script>
-    <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const grid = document.getElementById('mobileProjectsGrid');
-            const alertBox = document.getElementById('noMobileProjects');
-            if (grid && window.projectsData) {
-                const mobile = window.projectsData.filter(p => 
-                    p.type.toLowerCase().includes('mobile') || 
-                    p.type.toLowerCase().includes('app') ||
-                    p.category === 'Mobile Apps'
-                );
-                
-                if (mobile.length === 0) {
-                    alertBox.style.display = 'block';
-                } else {
-                    grid.innerHTML = '';
-                    mobile.forEach(project => {
-                        const card = createProjectCard(project);
-                        grid.appendChild(card);
-                    });
-                }
-            }
-        });
-    </script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script defer src="../firebase-init.js"></script>
+    <script defer src="../script.js"></script>
 </body>
 </html>

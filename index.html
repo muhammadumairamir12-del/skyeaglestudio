@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,12 @@
     
     <meta property="og:image" content="https://skyeaglestudio.com/images/logo.png">
     <meta name="twitter:card" content="summary_large_image">
-<!-- Google Fonts & Font Awesome Icons -->
+<!-- Performance hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.gstatic.com">
+    <!-- Google Fonts & Font Awesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
@@ -175,7 +180,7 @@
     <nav>
         <div class="logo-container">
             <a href="/" style="text-decoration: none;">
-                <div class="logo"><img src="images/logo.png" alt="SkyEagle Studio" class="header-logo">SkyEagle Studio</div>
+                <div class="logo"><img src="images/logo.webp" alt="SkyEagle Studio" class="header-logo" width="512" height="288">SkyEagle Studio</div>
             </a>
             <div class="logo-subtitle">SOFTWARE STUDIO</div>
         </div>
@@ -186,15 +191,15 @@
             </div>
                                 <ul class="nav-links">
             <li><a href="/"><span class="nav-num">01</span> Home</a></li>
-            <li><a href="services"><span class="nav-num">02</span> Services</a></li>
-            <li><a href="projects"><span class="nav-num">03</span> Work</a></li>
-            <li><a href="software"><span class="nav-num">04</span> Software</a></li>
-            <li><a href="reviews"><span class="nav-num">05</span> Reviews</a></li>
-            <li><a href="blog"><span class="nav-num">06</span> Blog</a></li>
-            <li><a href="about"><span class="nav-num">07</span> About</a></li>
-            <li><a href="journey"><span class="nav-num">08</span> Journey</a></li>
-            <li><a href="contact"><span class="nav-num">09</span> Contact</a></li>
-            <li class="nav-mobile-cta"><a href="contact" class="btn btn-primary"><span>Start a Project &rarr;</span></a></li>
+            <li><a href="/services"><span class="nav-num">02</span> Services</a></li>
+            <li><a href="/projects"><span class="nav-num">03</span> Work</a></li>
+            <li><a href="/software"><span class="nav-num">04</span> Software</a></li>
+            <li><a href="/reviews"><span class="nav-num">05</span> Reviews</a></li>
+            <li><a href="/blog"><span class="nav-num">06</span> Blog</a></li>
+            <li><a href="/about"><span class="nav-num">07</span> About</a></li>
+            <li><a href="/journey"><span class="nav-num">08</span> Journey</a></li>
+            <li><a href="/contact"><span class="nav-num">09</span> Contact</a></li>
+            <li class="nav-mobile-cta"><a href="/contact" class="btn btn-primary"><span>Start a Project &rarr;</span></a></li>
         </ul>
     </nav>
 
@@ -207,7 +212,7 @@
                     8+ Clients Served
                 </div>
                 <h1>We Build Digital Products<br>That Grow Businesses.</h1>
-                <h2>Websites, Software, Mobile Apps, SaaS & AI Solutions — Built for Real Businesses.</h2>
+                <h2>Websites, Software, Mobile Apps, SaaS & AI Solutions â€” Built for Real Businesses.</h2>
                 <div class="typewriter-container">
                     <span class="typewriter-label">We specialize in:</span>
                     <span class="typewriter" id="typewriter"></span>
@@ -243,7 +248,7 @@
                 </div>
             </div>
             <div class="pricing-banner">
-                <h3>💰 Premium Quality, Business-Focused Development</h3>
+                <h3>ðŸ’° Premium Quality, Business-Focused Development</h3>
                 <p class="pricing-desc">Great digital product engineering shouldn't break the bank. Our tailored, high-tech development cycles ensure maximum quality, rock-solid security, and flawless user experiences at competitive rates.</p>
             </div>
         </section>
@@ -572,7 +577,7 @@
                 </details>
                 <details class="faq-card">
                     <summary>Do you work with international clients?</summary>
-                    <p>Yes. I work with clients remotely from Lahore, Pakistan. Location is not a barrier — you speak directly with the person building your product.</p>
+                    <p>Yes. I work with clients remotely from Lahore, Pakistan. Location is not a barrier â€” you speak directly with the person building your product.</p>
                 </details>
                 <details class="faq-card">
                     <summary>Can you maintain an existing website?</summary>
@@ -681,7 +686,7 @@
 
     <!-- Footer -->
     <footer>
-        <img src="images/logo.png" alt="SkyEagle Studio Logo" class="footer-logo"><div class="footer-team">SkyEagle Studio</div>
+        <img src="images/logo.webp" alt="SkyEagle Studio Logo" class="footer-logo" width="512" height="288"><div class="footer-team">SkyEagle Studio</div>
         <p style="color: #aaa; margin-bottom: 20px; font-size: 1.1rem;">Digital products, software and AI solutions built for real businesses.</p>
         <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 20px;">
             <a href="/" style="color: #888; text-decoration: none; font-size: 0.9rem;">Home</a>
@@ -709,12 +714,12 @@
     <!-- Scripts -->
     <script src="projects-data.js"></script>
         <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="firebase-init.js"></script>
-    <script src="script.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script defer src="firebase-init.js"></script>
+    <script defer src="script.js"></script>
 
     <!-- Dynamic home reviews loader -->
     <script>

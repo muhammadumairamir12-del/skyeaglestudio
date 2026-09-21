@@ -1611,7 +1611,7 @@ footer {
 }
 
 @keyframes fadeOut {
-    to { opacity: 0; pointer-events: none; }
+    to { opacity: 0; pointer-events: none; visibility: hidden; }
 }
 
 .loader {

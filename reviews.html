@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -422,15 +422,15 @@
             </div>
                                 <ul class="nav-links">
             <li><a href="/"><span class="nav-num">01</span> Home</a></li>
-            <li><a href="services"><span class="nav-num">02</span> Services</a></li>
-            <li><a href="projects"><span class="nav-num">03</span> Work</a></li>
-            <li><a href="software"><span class="nav-num">04</span> Software</a></li>
-            <li><a href="reviews"><span class="nav-num">05</span> Reviews</a></li>
-            <li><a href="blog"><span class="nav-num">06</span> Blog</a></li>
-            <li><a href="about"><span class="nav-num">07</span> About</a></li>
-            <li><a href="journey"><span class="nav-num">08</span> Journey</a></li>
-            <li><a href="contact"><span class="nav-num">09</span> Contact</a></li>
-            <li class="nav-mobile-cta"><a href="contact" class="btn btn-primary"><span>Start a Project &rarr;</span></a></li>
+            <li><a href="/services"><span class="nav-num">02</span> Services</a></li>
+            <li><a href="/projects"><span class="nav-num">03</span> Work</a></li>
+            <li><a href="/software"><span class="nav-num">04</span> Software</a></li>
+            <li><a href="/reviews"><span class="nav-num">05</span> Reviews</a></li>
+            <li><a href="/blog"><span class="nav-num">06</span> Blog</a></li>
+            <li><a href="/about"><span class="nav-num">07</span> About</a></li>
+            <li><a href="/journey"><span class="nav-num">08</span> Journey</a></li>
+            <li><a href="/contact"><span class="nav-num">09</span> Contact</a></li>
+            <li class="nav-mobile-cta"><a href="/contact" class="btn btn-primary"><span>Start a Project &rarr;</span></a></li>
         </ul>
     </nav>
 
@@ -758,7 +758,7 @@
                             });
                         })
                         .then(() => {
-                            alert("📋 Review report submitted. It is hidden from the public page until an admin rechecks it.");
+                            alert("ðŸ“‹ Review report submitted. It is hidden from the public page until an admin rechecks it.");
                             closeReportModal();
                             reportForm.reset();
                         })
@@ -978,7 +978,7 @@
             const likesCountEl = document.getElementById(`likesVal_${reviewId}`);
 
             if (hasLiked) {
-                alert("👍 You have already liked this client review!");
+                alert("ðŸ‘ You have already liked this client review!");
                 return;
             }
 
@@ -1006,7 +1006,7 @@
             const shareUrl = `${window.location.origin}/reviews#review-${reviewId}`;
             const review = reviewsList.find(r => r.id === reviewId);
             const shareData = {
-                title: review ? `${review.name} — SkyEagle Studio review` : 'SkyEagle Studio review',
+                title: review ? `${review.name} â€” SkyEagle Studio review` : 'SkyEagle Studio review',
                 text: review ? review.review : 'Client review',
                 url: shareUrl
             };
@@ -1020,7 +1020,7 @@
 
         function copyReviewLink(shareUrl) {
             navigator.clipboard.writeText(shareUrl).then(() => {
-                alert("🔗 Link to this review copied to clipboard:\n" + shareUrl);
+                alert("ðŸ”— Link to this review copied to clipboard:\n" + shareUrl);
             }).catch(() => {
                 window.prompt("Copy this review link:", shareUrl);
             });

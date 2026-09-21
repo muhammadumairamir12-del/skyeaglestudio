@@ -14,6 +14,11 @@ window.projectsData = [
       "images/al-noor-solar-home.jpg",
       "images/al-noor-solar-products.jpg"
     ],
+    clientName: "Al-Noor Solar Energy",
+    challenge: "A Multan solar company needed a frontend + backend website with a product catalog and daily-updatable pricing — not a generic demo.",
+    solution: "Met in person after Jumu'ah, matched 2–3 reference sites, and shipped alnoorsolarenergy.com in 3–4 days with HTML, CSS, JS, Next.js, and Firebase. Also handled domain and hosting setup. Completed post-launch change requests.",
+    outcome: "Second completed project. Payment received 5–6 days after launch. Live at alnoorsolarenergy.com.",
+    price: "55,000 PKR",
     category: "Websites"
   },
   {
@@ -25,11 +30,16 @@ window.projectsData = [
     technologies: ["HTML5", "CSS3", "JavaScript"],
     liveUrl: "https://zmsolarelectric.com/",
     imageUrl: "images/zm-solar-electric-home.jpg",
-    imageUrl2: "images/zm-solar-electric-products.png",
+    imageUrl2: "images/zm-solar-electric-products.jpg",
     imageUrls: [
       "images/zm-solar-electric-home.jpg",
-      "images/zm-solar-electric-products.png"
+      "images/zm-solar-electric-products.jpg"
     ],
+    clientName: "ZM Solar Electric",
+    challenge: "A solar company needed a frontend + backend website. After a messy scheduling chain, we aligned on a video call on April 14. Mid-project, the owner's developer cousin pushed beyond scope.",
+    solution: "Quoted from prior solar experience, registered zmsolarelectric.com, shipped the site, then handed files, server access, and the domain to the owner's cousin on the owner's instruction.",
+    outcome: "Full 74,000 PKR paid (44k advance + 35k remaining). Only client where the relationship ended after a single project.",
+    price: "74,000 PKR",
     category: "Websites"
   },
   {
@@ -40,12 +50,17 @@ window.projectsData = [
     description: "A premium green technology website promoting solar hardware options, customized installations, and savings graphs.",
     technologies: ["HTML5", "CSS3", "JavaScript"],
     liveUrl: "https://binzareen.com/",
-    imageUrl: "images/bin-zareen-home.png",
-    imageUrl2: "images/bin-zareen-calculator.png",
+    imageUrl: "images/bin-zareen-home.jpg",
+    imageUrl2: "images/bin-zareen-calculator.jpg",
     imageUrls: [
-      "images/bin-zareen-home.png",
-      "images/bin-zareen-calculator.png"
+      "images/bin-zareen-home.jpg",
+      "images/bin-zareen-calculator.jpg"
     ],
+    clientName: "Bin Zareen Solar",
+    challenge: "An Islamabad solar company that went cold in March came back in April and needed a live solar website with catalog/data storage — not another delayed conversation.",
+    solution: "Settled at 45,000 PKR. Bought domain/hosting from a 20k upfront while on-site in Lahore, then finished the frontend in 2–3 days after returning home. Firebase backend/data-storage still being resolved.",
+    outcome: "Live at binzareen.com. 40,000 PKR received, 5,000 PKR pending. Product-facing backend not launched by the client yet; still in touch.",
+    price: "45,000 PKR",
     category: "Websites"
   },
   {
@@ -56,12 +71,17 @@ window.projectsData = [
     description: "Comprehensive hospital site with appointment reservation forms, staff lists, department lists, and clinical reviews.",
     technologies: ["HTML5", "CSS3", "JavaScript", "Node.js"],
     liveUrl: "https://www.al-fazalhospital.com/",
-    imageUrl: "images/al-fazal-hospital-home.png",
-    imageUrl2: "images/al-fazal-hospital-before-after.png",
+    imageUrl: "images/al-fazal-hospital-home.jpg",
+    imageUrl2: "images/al-fazal-hospital-before-after.jpg",
     imageUrls: [
-      "images/al-fazal-hospital-home.png",
-      "images/al-fazal-hospital-before-after.png"
+      "images/al-fazal-hospital-home.jpg",
+      "images/al-fazal-hospital-before-after.jpg"
     ],
+    clientName: "Al-Fazal Medical & Dental Hospital",
+    challenge: "Needed a professional hospital website, then a self-serve backend, then software for a 60–70 patient/day clinic on Excel — then a new receptionist after Waqas left and the system fell out of daily use.",
+    solution: "Phase 1: custom frontend. Phase 2: backend, appointments, WhatsApp, admin panel. Phase 3: on-site Flutter CRM. Phase 4: second Lahore trip — ran hiring (Meta ad), interviewed with Dr. Yasir's wife, trained the new receptionist 5–6 days, and kept remote daily support.",
+    outcome: "Strongest ongoing relationship. 27k + 40k + 70k + 15k. Software, hiring, training, and ongoing support from one cold call.",
+    price: "152,000 PKR",
     category: "Healthcare"
   },
   {
@@ -72,12 +92,17 @@ window.projectsData = [
     description: "Educational and skills development platform designed to empower learners with practical business skills and professional courses.",
     technologies: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
     liveUrl: "https://www.doorskill.com/",
-    imageUrl: "images/doorskill-home.png",
-    imageUrl2: "images/doorskill-map.png",
+    imageUrl: "images/doorskill-home.jpg",
+    imageUrl2: "images/doorskill-map.jpg",
     imageUrls: [
-      "images/doorskill-home.png",
-      "images/doorskill-map.png"
+      "images/doorskill-home.jpg",
+      "images/doorskill-map.jpg"
     ],
+    clientName: "DoorSkill (own product)",
+    challenge: "Needed a real SaaS marketplace to own — not just client work — connecting verified workers with jobs across cities.",
+    solution: "Built doorskill.com as a self-funded local service marketplace with city maps, worker discovery, job posting, and a modern React/Next.js stack.",
+    outcome: "Live product. First owned SaaS platform — funds and focus continue to grow it alongside client work.",
+    price: "Own product",
     category: "Websites"
   },
   {
@@ -88,12 +113,17 @@ window.projectsData = [
     description: "Premium clinical portal for hair restoration and medical aesthetics, featuring appointment scheduling and before/after treatment catalogs.",
     technologies: ["HTML5", "CSS3", "JavaScript"],
     liveUrl: "https://www.besthairlahore.com/",
-    imageUrl: "images/best-hair-lahore-home.png",
+    imageUrl: "images/best-hair-lahore-home.jpg",
     imageUrl2: "images/best-hair-lahore-treatments.jpg",
     imageUrls: [
-      "images/best-hair-lahore-home.png",
+      "images/best-hair-lahore-home.jpg",
       "images/best-hair-lahore-treatments.jpg"
     ],
+    clientName: "Best Hair Lahore",
+    challenge: "A Lahore hair transplant clinic thought they needed Meta ads. After a wasted software trip to another lead, I pitched them a website for long-term leads instead of short-term campaigns.",
+    solution: "Bought the domain myself, built besthairlahore.com with a strong SEO focus (100% SEO score), and covered hosting out of pocket. Still in touch.",
+    outcome: "Live and performing. Only 4,000 PKR received (domain cost). Hosting and the actual build unpaid so far. Relationship ongoing.",
+    price: "4,000 PKR",
     category: "Websites"
   },
   {
@@ -115,13 +145,17 @@ window.projectsData = [
     description: "XPro clinic CRM built for Al-Fazal Hospital — patient records, tokens, appointments, billing, lab orders, and daily reception workflows on desktop.",
     technologies: ["Next.js", "TypeScript", "Firebase", "Tailwind CSS"],
     liveUrl: "https://dental-clinics-software.vercel.app/",
-    imageUrl: "images/al-fazal-crm-dashboard.png",
-    imageUrl2: "images/al-fazal-crm-quick-actions.png",
+    imageUrl: "images/al-fazal-crm-dashboard.jpg",
+    imageUrl2: "images/al-fazal-crm-quick-actions.jpg",
     imageUrls: [
-      "images/al-fazal-crm-dashboard.png",
-      "images/al-fazal-crm-quick-actions.png"
+      "images/al-fazal-crm-dashboard.jpg",
+      "images/al-fazal-crm-quick-actions.jpg"
     ],
     clientName: "Al-Fazal Hospital",
+    challenge: "A 60–70 patient/day clinic was running on Excel. After the website phases, Dr. Yasir needed desk software that reception could use every day — then the trained receptionist left and the system went unused.",
+    solution: "Built XPro on-site in Flutter/Next.js with patient records, tokens, appointments, billing, and lab orders. Later returned to Lahore to hire and train a new receptionist and keep remote daily support.",
+    outcome: "Live CRM in daily clinic use. Part of the ongoing Al-Fazal relationship (70k software phase + 15k support).",
+    price: "70,000 PKR",
     category: "Software"
   },
   {
@@ -132,13 +166,17 @@ window.projectsData = [
     description: "Custom clinic software for Zeeshan Dental Clinic — patient records, prescriptions, printable PDFs, letterheads, and reception workflows for Dr. Asad Zeeshan.",
     technologies: ["Clinic software", "Printing", "Automation"],
     liveUrl: "",
-    imageUrl: "images/zeeshan-dental-prescription.png",
-    imageUrl2: "images/zeeshan-dental-print.png",
+    imageUrl: "images/zeeshan-dental-prescription.jpg",
+    imageUrl2: "images/zeeshan-dental-print.jpg",
     imageUrls: [
-      "images/zeeshan-dental-prescription.png",
-      "images/zeeshan-dental-print.png"
+      "images/zeeshan-dental-prescription.jpg",
+      "images/zeeshan-dental-print.jpg"
     ],
     clientName: "Dr. Asad Zeeshan",
+    challenge: "Dr. Asad Zeeshan in Peer Mahal needed clinic management software. A July Meta ad lead that only converted in September after persistent follow-up.",
+    solution: "Quoted, then met in Multan on Sept 11 for a 3-hour requirements session. Building a full clinic app with printing, custom layouts, and automation. Print layout is the last remaining fix.",
+    outcome: "In progress — 95% complete as of Sept 21. Received 15,000 PKR (5k + 10k). 20,000 PKR pending.",
+    price: "35,000 PKR",
     category: "Software"
   },
   {

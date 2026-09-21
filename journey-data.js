@@ -20,11 +20,11 @@ window.journeyCaseStudies = [
     price: "152,000 PKR",
     outcome: "Strongest ongoing relationship. 27k + 40k + 70k + 15k. Software, hiring, training, and ongoing support from one cold call.",
     liveUrl: "https://www.al-fazalhospital.com/",
-    imageUrl: "images/al-fazal-hospital-home.png",
-    imageUrl2: "images/al-fazal-hospital-before-after.png",
+    imageUrl: "images/al-fazal-hospital-home.jpg",
+    imageUrl2: "images/al-fazal-hospital-before-after.jpg",
     imageUrls: [
-      "images/al-fazal-hospital-home.png",
-      "images/al-fazal-hospital-before-after.png"
+      "images/al-fazal-hospital-home.jpg",
+      "images/al-fazal-hospital-before-after.jpg"
     ],
     placeholder: false
   },
@@ -61,10 +61,10 @@ window.journeyCaseStudies = [
     outcome: "Full 74,000 PKR paid (44k advance + 35k remaining). Only client where the relationship ended after a single project.",
     liveUrl: "https://zmsolarelectric.com/",
     imageUrl: "images/zm-solar-electric-home.jpg",
-    imageUrl2: "images/zm-solar-electric-products.png",
+    imageUrl2: "images/zm-solar-electric-products.jpg",
     imageUrls: [
       "images/zm-solar-electric-home.jpg",
-      "images/zm-solar-electric-products.png"
+      "images/zm-solar-electric-products.jpg"
     ],
     placeholder: false
   },
@@ -78,13 +78,13 @@ window.journeyCaseStudies = [
     solution: "Settled at 45,000 PKR. Bought domain/hosting from a 20k upfront while on-site in Lahore, then finished the frontend in 2–3 days after returning home. Firebase backend/data-storage still being resolved.",
     techStack: ["HTML", "CSS", "JavaScript", "Firebase"],
     price: "45,000 PKR",
-    outcome: "Live at binzareensolar.com. 40,000 PKR received, 5,000 PKR pending. Product-facing backend not launched by the client yet; still in touch.",
+    outcome: "Live at binzareen.com. 40,000 PKR received, 5,000 PKR pending. Product-facing backend not launched by the client yet; still in touch.",
     liveUrl: "https://binzareen.com/",
-    imageUrl: "images/bin-zareen-home.png",
-    imageUrl2: "images/bin-zareen-calculator.png",
+    imageUrl: "images/bin-zareen-home.jpg",
+    imageUrl2: "images/bin-zareen-calculator.jpg",
     imageUrls: [
-      "images/bin-zareen-home.png",
-      "images/bin-zareen-calculator.png"
+      "images/bin-zareen-home.jpg",
+      "images/bin-zareen-calculator.jpg"
     ],
     placeholder: false
   },
@@ -100,10 +100,10 @@ window.journeyCaseStudies = [
     price: "4,000 PKR",
     outcome: "Live and performing. Only 4,000 PKR received (domain cost). Hosting and the actual build unpaid so far. Relationship ongoing.",
     liveUrl: "https://www.besthairlahore.com/",
-    imageUrl: "images/best-hair-lahore-home.png",
+    imageUrl: "images/best-hair-lahore-home.jpg",
     imageUrl2: "images/best-hair-lahore-treatments.jpg",
     imageUrls: [
-      "images/best-hair-lahore-home.png",
+      "images/best-hair-lahore-home.jpg",
       "images/best-hair-lahore-treatments.jpg"
     ],
     placeholder: false
@@ -120,39 +120,13 @@ window.journeyCaseStudies = [
     price: "35,000 PKR",
     outcome: "In progress — 95% complete as of Sept 21. Received 15,000 PKR (5k + 10k). 20,000 PKR pending.",
     liveUrl: "",
-    imageUrl: "images/zeeshan-dental-prescription.png",
-    imageUrl2: "images/zeeshan-dental-print.png",
+    imageUrl: "images/zeeshan-dental-prescription.jpg",
+    imageUrl2: "images/zeeshan-dental-print.jpg",
     imageUrls: [
-      "images/zeeshan-dental-prescription.png",
-      "images/zeeshan-dental-print.png"
+      "images/zeeshan-dental-prescription.jpg",
+      "images/zeeshan-dental-print.jpg"
     ],
     placeholder: false
-  },
-  {
-    id: "client-07",
-    clientName: "Client 07",
-    industry: "Add industry",
-    year: "",
-    problem: "Add the problem this client faced.",
-    solution: "Add the solution you built.",
-    techStack: ["Add tech"],
-    price: "Add project price",
-    outcome: "Add the outcome here.",
-    liveUrl: "",
-    placeholder: true
-  },
-  {
-    id: "client-08",
-    clientName: "Client 08",
-    industry: "Add industry",
-    year: "",
-    problem: "Add the problem this client faced.",
-    solution: "Add the solution you built.",
-    techStack: ["Add tech"],
-    price: "Add project price",
-    outcome: "Add the outcome here.",
-    liveUrl: "",
-    placeholder: true
   }
 ];
 

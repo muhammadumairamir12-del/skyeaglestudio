@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -62,7 +62,7 @@
     <nav>
         <div class="logo-container">
             <a href="/" style="text-decoration: none;">
-                <div class="logo"><img src="../images/logo.png" alt="SkyEagle Studio" class="header-logo">SkyEagle Studio</div>
+                <div class="logo"><img src="../images/logo.webp" alt="SkyEagle Studio" class="header-logo" width="512" height="288">SkyEagle Studio</div>
             </a>
             <div class="logo-subtitle">SOFTWARE STUDIO</div>
         </div>
@@ -72,16 +72,16 @@
                 <span class="line line-3"></span>
             </div>
                                 <ul class="nav-links">
-            <li><a href="../"><span class="nav-num">01</span> Home</a></li>
-            <li><a href="../services"><span class="nav-num">02</span> Services</a></li>
-            <li><a href="../projects"><span class="nav-num">03</span> Work</a></li>
-            <li><a href="../software"><span class="nav-num">04</span> Software</a></li>
-            <li><a href="../reviews"><span class="nav-num">05</span> Reviews</a></li>
-            <li><a href="../blog"><span class="nav-num">06</span> Blog</a></li>
-            <li><a href="../about"><span class="nav-num">07</span> About</a></li>
-            <li><a href="../journey"><span class="nav-num">08</span> Journey</a></li>
-            <li><a href="../contact"><span class="nav-num">09</span> Contact</a></li>
-            <li class="nav-mobile-cta"><a href="../contact" class="btn btn-primary"><span>Start a Project &rarr;</span></a></li>
+            <li><a href="/"><span class="nav-num">01</span> Home</a></li>
+            <li><a href="/services"><span class="nav-num">02</span> Services</a></li>
+            <li><a href="/projects"><span class="nav-num">03</span> Work</a></li>
+            <li><a href="/software"><span class="nav-num">04</span> Software</a></li>
+            <li><a href="/reviews"><span class="nav-num">05</span> Reviews</a></li>
+            <li><a href="/blog"><span class="nav-num">06</span> Blog</a></li>
+            <li><a href="/about"><span class="nav-num">07</span> About</a></li>
+            <li><a href="/journey"><span class="nav-num">08</span> Journey</a></li>
+            <li><a href="/contact"><span class="nav-num">09</span> Contact</a></li>
+            <li class="nav-mobile-cta"><a href="/contact" class="btn btn-primary"><span>Start a Project &rarr;</span></a></li>
         </ul>
     </nav>
 
@@ -127,13 +127,13 @@
                         <!-- Details Col -->
                         <div class="case-desc-col">
                             <h2 style="font-family:var(--font-heading); font-size:1.5rem; color:#fff; margin-bottom:20px; border-left:3px solid var(--primary); padding-left:12px;">Project Overview</h2>
-                            <p style="color:#aaa; font-size:0.95rem; line-height:1.7; margin-bottom:20px;">This project represents a fully functioning digital solution designed to help our client automate operational workflows, showcase product inventories, and capture organic business leads.</p>
+                            <p style="color:#aaa; font-size:0.95rem; line-height:1.7; margin-bottom:20px;" id="caseOverview"></p>
                             
                             <h3 style="font-family:var(--font-heading); font-size:1.1rem; color:#fff; margin-top:30px; margin-bottom:12px;">The Challenge</h3>
-                            <p style="color:#aaa; font-size:0.95rem; line-height:1.7; margin-bottom:20px;" id="caseChallenge">Building a secure and highly responsive interface configured for instant page transitions, ensuring international clients can navigate directories and book scoping appointments under high network latency constraints.</p>
+                            <p style="color:#aaa; font-size:0.95rem; line-height:1.7; margin-bottom:20px;" id="caseChallenge"></p>
                             
                             <h3 style="font-family:var(--font-heading); font-size:1.1rem; color:#fff; margin-top:30px; margin-bottom:12px;">The Solution</h3>
-                            <p style="color:#aaa; font-size:0.95rem; line-height:1.7;" id="caseSolution">Engineered a lightweight, static code layout with fast media rendering, highly robust styling scripts, custom interactive form validation flows, and active integration of direct client channels.</p>
+                            <p style="color:#aaa; font-size:0.95rem; line-height:1.7;" id="caseSolution"></p>
 
                             <h3 id="caseOutcomeHeading" style="font-family:var(--font-heading); font-size:1.1rem; color:#fff; margin-top:30px; margin-bottom:12px; display:none;">The Outcome</h3>
                             <p style="color:#aaa; font-size:0.95rem; line-height:1.7;" id="caseOutcome"></p>
@@ -226,7 +226,7 @@
 
     <!-- Footer -->
     <footer>
-        <img src="../images/logo.png" alt="SkyEagle Studio Logo" class="footer-logo"><div class="footer-team">SkyEagle Studio</div>
+        <img src="../images/logo.webp" alt="SkyEagle Studio Logo" class="footer-logo" width="512" height="288"><div class="footer-team">SkyEagle Studio</div>
         <p style="color: #aaa; margin-bottom: 20px; font-size: 1.1rem;">Digital products, software and AI solutions built for real businesses.</p>
         <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 20px;">
             <a href="/" style="color: #888; text-decoration: none; font-size: 0.9rem;">Home</a>
@@ -254,12 +254,12 @@
     <!-- Scripts -->
     <script src="../projects-data.js"></script>
         <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="../firebase-init.js"></script>
-    <script src="../script.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script defer src="../firebase-init.js"></script>
+    <script defer src="../script.js"></script>
     
     <script>
         function getCaseStudySlug() {
@@ -318,7 +318,7 @@
                     matches.slice(0, 6).forEach((r) => {
                         const card = document.createElement('article');
                         card.className = 'project-review-card';
-                        const stars = '★'.repeat(r.rating || 0) + '☆'.repeat(5 - (r.rating || 0));
+                        const stars = 'â˜…'.repeat(r.rating || 0) + 'â˜†'.repeat(5 - (r.rating || 0));
                         const h = document.createElement('h3');
                         h.textContent = r.name || 'Client';
                         const rating = document.createElement('div');
@@ -345,7 +345,7 @@
             contentArticle.style.display = 'block';
 
             const pageTitle = `${project.name} | SkyEagle Studio Case Study`;
-            const pageDesc = project.description || `Case study: ${project.name} — ${project.industry || 'custom software'} by SkyEagle Studio.`;
+            const pageDesc = project.description || `Case study: ${project.name} â€” ${project.industry || 'custom software'} by SkyEagle Studio.`;
             const pageUrl = `https://skyeaglestudio.com/projects/${project.slug}`;
 
             document.getElementById('metaTitle').textContent = pageTitle;
@@ -361,12 +361,20 @@
             document.getElementById('projDescription').textContent = project.description || '';
             document.getElementById('caseDeploy').textContent = project.type || 'Web Platform';
 
-            if (project.challenge) document.getElementById('caseChallenge').textContent = project.challenge;
-            if (project.solution) document.getElementById('caseSolution').textContent = project.solution;
-            if (project.slug === 'dental-clinics-management-software' && !project.challenge) {
-                document.getElementById('caseChallenge').textContent = "Doctors and dental practices needed a central Patient Records log, Invoices tracker, and Scheduler that could function completely offline at local front desks, yet synchronize patient records with online database backups when connection became active.";
-                document.getElementById('caseSolution').textContent = "Engineered a Next.js offline index DB layer combined with a secure Firebase DB backend. Implemented scheduling dashboards, printable invoices, doctors schedules, and prescription logs with 100% data durability.";
+            const overviewEl = document.getElementById('caseOverview');
+            if (overviewEl) {
+                overviewEl.textContent = project.description
+                    || (project.clientName
+                        ? ('Custom digital product built for ' + project.clientName + (project.industry ? (' in ' + project.industry) : '') + '.')
+                        : 'Custom digital product designed, built, and shipped by SkyEagle Studio.');
             }
+
+            const challengeText = project.challenge || project.problem || '';
+            const solutionText = project.solution || '';
+            document.getElementById('caseChallenge').textContent = challengeText
+                || 'Deliver a production-ready product that fits real day-to-day operations — not a demo.';
+            document.getElementById('caseSolution').textContent = solutionText
+                || ('Built with ' + (window.normalizeTechList ? window.normalizeTechList(project.technologies).join(', ') : (project.technologies || []).join(', ') || 'a modern web stack') + ', focusing on speed, clarity, and maintainability.');
 
             if (project.outcome) {
                 document.getElementById('caseOutcomeHeading').style.display = 'block';
@@ -392,14 +400,18 @@
             });
 
             const liveBtn = document.getElementById('projLiveButton');
-            const liveUrl = project.liveUrl || '/contact';
-            liveBtn.href = liveUrl;
-            if (window.isExternalLiveUrl && window.isExternalLiveUrl(liveUrl)) {
+            const liveUrl = project.liveUrl
+                || ((window.projectsData || []).find((p) => p.slug === project.slug) || {}).liveUrl
+                || '';
+            const isLiveSite = /^https?:\/\//i.test(liveUrl);
+            if (isLiveSite) {
+                liveBtn.href = liveUrl;
                 liveBtn.target = '_blank';
                 liveBtn.rel = 'noopener noreferrer';
                 liveBtn.querySelector('span').innerHTML = 'Visit Live Website &rarr;';
             } else {
                 liveBtn.removeAttribute('target');
+                liveBtn.removeAttribute('rel');
                 liveBtn.href = '/contact';
                 liveBtn.querySelector('span').innerHTML = 'Inquire About Product';
             }
@@ -414,7 +426,7 @@
             if (galleryHost && window.buildShotGallery) {
                 galleryHost.innerHTML = '';
                 galleryHost.style.minHeight = '420px';
-                galleryHost.appendChild(window.buildShotGallery(window.projectImageList(project), project.name, true));
+                galleryHost.appendChild(window.buildShotGallery(window.projectImageList(project), project.name, true, { eager: true }));
             }
 
             loadProjectReviews(project);

@@ -6,7 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             loader.style.opacity = '0';
             loader.style.pointerEvents = 'none';
-        }, 800);
+            setTimeout(() => {
+                loader.style.display = 'none';
+                loader.setAttribute('aria-hidden', 'true');
+            }, 400);
+        }, 500);
     }
 
     // ===== NAV ACTIVE STATE BASED ON CURRENT URL =====
@@ -234,8 +238,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.projectImageSrc = function(imageUrl, isInSubfolder = false) {
         if (!imageUrl) return '';
-        if (/^https?:\/\//i.test(imageUrl) || imageUrl.startsWith('data:')) return imageUrl;
-        return (isInSubfolder ? '../' : '') + imageUrl;
+        if (/^https?:\/\//i.test(imageUrl) || imageUrl.startsWith('data:') || imageUrl.startsWith('/')) return imageUrl;
+        const cleaned = String(imageUrl).replace(/^\.\.\//, '');
+        return '/' + cleaned;
     };
 
     window.projectImageList = function(project) {
@@ -261,10 +266,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return '/reviews?' + params.toString() + '#submitReviewFormSection';
     };
 
-    window.buildShotGallery = function(images, alt, isInSubfolder) {
+    window.buildShotGallery = function(images, alt, isInSubfolder, options) {
+        options = options || {};
         const wrap = document.createElement('div');
         wrap.className = 'shot-gallery';
         const resolved = (images || []).map((src) => window.projectImageSrc(src, isInSubfolder)).filter(Boolean);
+        const preferEager = options.eager === true;
 
         if (!resolved.length) {
             wrap.classList.add('is-empty');
@@ -277,7 +284,14 @@ document.addEventListener('DOMContentLoaded', () => {
             img.className = 'shot-gallery-img' + (i === 0 ? ' is-active' : '');
             img.src = src;
             img.alt = (alt || 'Project') + ' screenshot ' + (i + 1);
-            img.loading = 'lazy';
+            img.decoding = 'async';
+            img.loading = (preferEager && i === 0) ? 'eager' : 'lazy';
+            if (i === 0 && preferEager) img.setAttribute('fetchpriority', 'high');
+            else img.setAttribute('fetchpriority', 'low');
+            if (!img.getAttribute('width')) {
+                img.setAttribute('width', '1200');
+                img.setAttribute('height', '750');
+            }
             wrap.appendChild(img);
         });
 
@@ -406,11 +420,16 @@ document.addEventListener('DOMContentLoaded', () => {
         title.textContent = project.name || project.clientName || 'Untitled project';
         copy.appendChild(title);
 
-        if (mode === 'journey') {
+        const storyProblem = project.problem || project.challenge || '';
+        const storySolution = project.solution || '';
+        const storyOutcome = project.outcome || '';
+        const hasStory = !!(storyProblem || storySolution || storyOutcome || project.price);
+
+        if (mode === 'journey' || (mode === 'portfolio' && hasStory && (storyProblem || storySolution))) {
             const fields = [
-                ['Problem', project.problem],
-                ['Solution built', project.solution],
-                ['Outcome', project.outcome]
+                ['Problem', storyProblem],
+                ['Solution built', storySolution],
+                ['Outcome', storyOutcome]
             ];
             fields.forEach(([label, value]) => {
                 if (!value) return;
@@ -530,10 +549,26 @@ document.addEventListener('DOMContentLoaded', () => {
                             delete bySlug[slug];
                             return;
                         }
-                        bySlug[slug] = Object.assign({}, bySlug[slug] || {}, data, {
+                        const local = bySlug[slug] || {};
+                        const merged = Object.assign({}, local, data, {
                             slug: slug,
                             firestoreId: doc.id
                         });
+                        // Never let empty Firestore fields wipe richer local portfolio/case-study data
+                        [
+                            'liveUrl', 'imageUrl', 'imageUrl2', 'imageUrls',
+                            'challenge', 'problem', 'solution', 'outcome', 'price',
+                            'clientName', 'description', 'technologies', 'techStack',
+                            'name', 'industry', 'type', 'category'
+                        ].forEach((key) => {
+                            const remoteEmpty = merged[key] === '' || merged[key] == null
+                                || (Array.isArray(merged[key]) && !merged[key].length);
+                            if (remoteEmpty && local[key] !== undefined && local[key] !== ''
+                                && !(Array.isArray(local[key]) && !local[key].length)) {
+                                merged[key] = local[key];
+                            }
+                        });
+                        bySlug[slug] = merged;
                     });
                     window.projectsData = Object.values(bySlug);
                     resolve(window.projectsData);
