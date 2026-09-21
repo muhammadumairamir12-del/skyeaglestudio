@@ -7,8 +7,13 @@ window.projectsData = [
     type: "Business Website",
     description: "Business portal presenting sustainable solar setups, client catalogs, calculators, and system savings trackers.",
     technologies: ["HTML5", "CSS3", "JavaScript", "PHP"],
-    liveUrl: "https://al-noorsolarenergy.com/#home",
-    imageUrl: "images/solar_mockup.jpg",
+    liveUrl: "https://al-noorsolarenergy.com/",
+    imageUrl: "images/al-noor-solar-home.jpg",
+    imageUrl2: "images/al-noor-solar-products.jpg",
+    imageUrls: [
+      "images/al-noor-solar-home.jpg",
+      "images/al-noor-solar-products.jpg"
+    ],
     category: "Websites"
   },
   {
@@ -19,7 +24,12 @@ window.projectsData = [
     description: "Clean, high-performance solar solution showcase page featuring quote requests and installation case studies.",
     technologies: ["HTML5", "CSS3", "JavaScript"],
     liveUrl: "https://zmsolarelectric.com/",
-    imageUrl: "images/solar_mockup.jpg",
+    imageUrl: "images/zm-solar-electric-home.jpg",
+    imageUrl2: "images/zm-solar-electric-products.png",
+    imageUrls: [
+      "images/zm-solar-electric-home.jpg",
+      "images/zm-solar-electric-products.png"
+    ],
     category: "Websites"
   },
   {
@@ -30,7 +40,12 @@ window.projectsData = [
     description: "A premium green technology website promoting solar hardware options, customized installations, and savings graphs.",
     technologies: ["HTML5", "CSS3", "JavaScript"],
     liveUrl: "https://binzareen.com/",
-    imageUrl: "images/solar_mockup.jpg",
+    imageUrl: "images/bin-zareen-home.png",
+    imageUrl2: "images/bin-zareen-calculator.png",
+    imageUrls: [
+      "images/bin-zareen-home.png",
+      "images/bin-zareen-calculator.png"
+    ],
     category: "Websites"
   },
   {
@@ -41,7 +56,12 @@ window.projectsData = [
     description: "Comprehensive hospital site with appointment reservation forms, staff lists, department lists, and clinical reviews.",
     technologies: ["HTML5", "CSS3", "JavaScript", "Node.js"],
     liveUrl: "https://www.al-fazalhospital.com/",
-    imageUrl: "images/medical_mockup.jpg",
+    imageUrl: "images/al-fazal-hospital-home.png",
+    imageUrl2: "images/al-fazal-hospital-before-after.png",
+    imageUrls: [
+      "images/al-fazal-hospital-home.png",
+      "images/al-fazal-hospital-before-after.png"
+    ],
     category: "Healthcare"
   },
   {
@@ -52,18 +72,28 @@ window.projectsData = [
     description: "Educational and skills development platform designed to empower learners with practical business skills and professional courses.",
     technologies: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
     liveUrl: "https://www.doorskill.com/",
-    imageUrl: "images/solar_mockup.jpg",
+    imageUrl: "images/doorskill-home.png",
+    imageUrl2: "images/doorskill-map.png",
+    imageUrls: [
+      "images/doorskill-home.png",
+      "images/doorskill-map.png"
+    ],
     category: "Websites"
   },
   {
     slug: "best-hair-lahore",
     name: "Best Hair Lahore",
-    industry: "Beauty / Hair",
-    type: "Business Website",
+    industry: "Hair Transplant",
+    type: "Clinic Website",
     description: "Premium clinical portal for hair restoration and medical aesthetics, featuring appointment scheduling and before/after treatment catalogs.",
     technologies: ["HTML5", "CSS3", "JavaScript"],
     liveUrl: "https://www.besthairlahore.com/",
-    imageUrl: "images/medical_mockup.jpg",
+    imageUrl: "images/best-hair-lahore-home.png",
+    imageUrl2: "images/best-hair-lahore-treatments.jpg",
+    imageUrls: [
+      "images/best-hair-lahore-home.png",
+      "images/best-hair-lahore-treatments.jpg"
+    ],
     category: "Websites"
   },
   {
@@ -79,13 +109,36 @@ window.projectsData = [
   },
   {
     slug: "dental-clinics-management-software",
-    name: "Dental Clinic Management Software",
+    name: "Al-Fazal CRM Software",
     industry: "Healthcare Software",
-    type: "SaaS / Desktop / Web / Mobile",
-    description: "Advanced dental management system built with appointment schedulers, treatment logs, billing invoices, and doctor profiles. Configurable for online/offline deployment.",
+    type: "Clinic CRM / Desktop",
+    description: "XPro clinic CRM built for Al-Fazal Hospital — patient records, tokens, appointments, billing, lab orders, and daily reception workflows on desktop.",
     technologies: ["Next.js", "TypeScript", "Firebase", "Tailwind CSS"],
     liveUrl: "https://dental-clinics-software.vercel.app/",
-    imageUrl: "images/software_mockup.jpg",
+    imageUrl: "images/al-fazal-crm-dashboard.png",
+    imageUrl2: "images/al-fazal-crm-quick-actions.png",
+    imageUrls: [
+      "images/al-fazal-crm-dashboard.png",
+      "images/al-fazal-crm-quick-actions.png"
+    ],
+    clientName: "Al-Fazal Hospital",
+    category: "Software"
+  },
+  {
+    slug: "zeeshan-dental-clinic",
+    name: "Asad Zeeshan Dental Clinic Software",
+    industry: "Healthcare Software",
+    type: "Clinic Software / Desktop",
+    description: "Custom clinic software for Zeeshan Dental Clinic — patient records, prescriptions, printable PDFs, letterheads, and reception workflows for Dr. Asad Zeeshan.",
+    technologies: ["Clinic software", "Printing", "Automation"],
+    liveUrl: "",
+    imageUrl: "images/zeeshan-dental-prescription.png",
+    imageUrl2: "images/zeeshan-dental-print.png",
+    imageUrls: [
+      "images/zeeshan-dental-prescription.png",
+      "images/zeeshan-dental-print.png"
+    ],
+    clientName: "Dr. Asad Zeeshan",
     category: "Software"
   },
   {

@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="metaTitle">Case Study | SkyEagle Studio</title>
+        <meta name="google-site-verification" content="heVo5-MxaPvntQwwciXHihH2LsQz2KBCcofxtWIUek8" />
+    <link rel="canonical" id="canonicalLink" href="https://skyeaglestudio.com/projects">
+    <meta property="og:title" id="ogTitle" content="Case Study | SkyEagle Studio">
+    <meta property="og:description" id="ogDesc" content="SkyEagle Studio case study. Learn about our project challenge, technical solution, and real-world results.">
+    <meta property="og:url" id="ogUrl" content="https://skyeaglestudio.com/projects">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://skyeaglestudio.com/images/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+<title id="metaTitle">Case Study | SkyEagle Studio</title>
     <!-- SEO Optimization -->
     <meta name="description" id="metaDesc" content="SkyEagle Studio case study. Learn about our project challenge, technical solution, and real-world results.">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -71,7 +79,8 @@
             <li><a href="../reviews"><span class="nav-num">05</span> Reviews</a></li>
             <li><a href="../blog"><span class="nav-num">06</span> Blog</a></li>
             <li><a href="../about"><span class="nav-num">07</span> About</a></li>
-            <li><a href="../contact"><span class="nav-num">08</span> Contact</a></li>
+            <li><a href="../journey"><span class="nav-num">08</span> Journey</a></li>
+            <li><a href="../contact"><span class="nav-num">09</span> Contact</a></li>
             <li class="nav-mobile-cta"><a href="../contact" class="btn btn-primary"><span>Start a Project &rarr;</span></a></li>
         </ul>
     </nav>
@@ -102,8 +111,9 @@
                     
                     <p id="projDescription" style="color:var(--gray-light); font-size:1.15rem; line-height:1.7; max-width:850px; margin-bottom:35px;">Short project description outlining product capabilities.</p>
                     
-                    <div style="display:flex; flex-wrap:wrap; gap:15px; align-items:center;">
-                        <a id="projLiveButton" href="#" target="_blank" class="btn btn-primary"><span>Visit Live Website <i class="fas fa-external-link-alt" style="margin-left:8px;"></i></span></a>
+                    <div style="display:flex; flex-wrap:wrap; gap:15px; align-items:center;" id="projHeroActions">
+                        <a id="projLiveButton" href="#" target="_blank" class="btn btn-primary"><span>Visit Live Website &rarr;</span></a>
+                        <a id="projReviewButton" href="/reviews" class="btn btn-secondary"><span>Leave a Review for This Project</span></a>
                         <a href="/contact" class="btn btn-secondary"><span>Discuss Similar Project</span></a>
                     </div>
                 </div>
@@ -116,35 +126,46 @@
                         
                         <!-- Details Col -->
                         <div class="case-desc-col">
-                            <h3 style="font-family:var(--font-heading); font-size:1.5rem; color:#fff; margin-bottom:20px; border-left:3px solid var(--primary); padding-left:12px;">Project Overview</h3>
+                            <h2 style="font-family:var(--font-heading); font-size:1.5rem; color:#fff; margin-bottom:20px; border-left:3px solid var(--primary); padding-left:12px;">Project Overview</h2>
                             <p style="color:#aaa; font-size:0.95rem; line-height:1.7; margin-bottom:20px;">This project represents a fully functioning digital solution designed to help our client automate operational workflows, showcase product inventories, and capture organic business leads.</p>
                             
-                            <h4 style="font-family:var(--font-heading); font-size:1.1rem; color:#fff; margin-top:30px; margin-bottom:12px;">The Challenge</h4>
+                            <h3 style="font-family:var(--font-heading); font-size:1.1rem; color:#fff; margin-top:30px; margin-bottom:12px;">The Challenge</h3>
                             <p style="color:#aaa; font-size:0.95rem; line-height:1.7; margin-bottom:20px;" id="caseChallenge">Building a secure and highly responsive interface configured for instant page transitions, ensuring international clients can navigate directories and book scoping appointments under high network latency constraints.</p>
                             
-                            <h4 style="font-family:var(--font-heading); font-size:1.1rem; color:#fff; margin-top:30px; margin-bottom:12px;">The Solution</h4>
+                            <h3 style="font-family:var(--font-heading); font-size:1.1rem; color:#fff; margin-top:30px; margin-bottom:12px;">The Solution</h3>
                             <p style="color:#aaa; font-size:0.95rem; line-height:1.7;" id="caseSolution">Engineered a lightweight, static code layout with fast media rendering, highly robust styling scripts, custom interactive form validation flows, and active integration of direct client channels.</p>
+
+                            <h3 id="caseOutcomeHeading" style="font-family:var(--font-heading); font-size:1.1rem; color:#fff; margin-top:30px; margin-bottom:12px; display:none;">The Outcome</h3>
+                            <p style="color:#aaa; font-size:0.95rem; line-height:1.7;" id="caseOutcome"></p>
                         </div>
                         
                         <!-- Metadata Card -->
                         <div class="case-meta-col">
                             <div class="case-meta-card">
-                                <h4 style="font-family:var(--font-heading); font-size:1.1rem; color:#fff; margin-bottom:20px; border-bottom:1px solid #222; padding-bottom:10px;">Specifications</h4>
+                                <h3 style="font-family:var(--font-heading); font-size:1.1rem; color:#fff; margin-bottom:20px; border-bottom:1px solid #222; padding-bottom:10px;">Specifications</h3>
                                 
+                                <div class="meta-item" id="caseClientRow" style="display:none;">
+                                    <span class="meta-label">Client</span>
+                                    <span class="meta-val" id="caseClient"></span>
+                                </div>
                                 <div class="meta-item">
                                     <span class="meta-label">Deploy Format</span>
                                     <span class="meta-val" id="caseDeploy">Web Platform</span>
                                 </div>
+                                <div class="meta-item" id="casePriceRow" style="display:none;">
+                                    <span class="meta-label">Investment</span>
+                                    <span class="meta-val" id="casePrice"></span>
+                                </div>
                                 <div class="meta-item">
                                     <span class="meta-label">Client Status</span>
-                                    <span class="meta-val">Verified Corporate</span>
+                                    <span class="meta-val">Live Client Project</span>
                                 </div>
                                 <div class="meta-item">
                                     <span class="meta-label">Scope Completed</span>
                                     <span class="meta-val">Interface, Assets & Integration</span>
                                 </div>
                                 
-                                <h4 style="font-family:var(--font-heading); font-size:1rem; color:#fff; margin-top:25px; margin-bottom:12px;">Technologies Used</h4>
+                                <h3 style="font-family:var(--font-heading); font-size:1rem; color:#fff; margin-top:25px; margin-bottom:12px;">Technologies Used</h3>
                                 <div class="tech-tags" id="caseTechTags">
                                     <!-- Loaded by JS -->
                                 </div>
@@ -158,10 +179,23 @@
             <!-- Case Screenshot Showcase -->
             <section class="experience" style="padding: 80px 20px;">
                 <div style="max-width:1100px; margin:0 auto; text-align:center;">
-                    <h3 style="font-family:var(--font-heading); font-size:1.5rem; color:#fff; margin-bottom:40px;">System Interface Screenshot</h3>
-                    <div class="case-image-wrapper">
-                        <!-- Loaded dynamically -->
+                    <h2 style="font-family:var(--font-heading); font-size:1.5rem; color:#fff; margin-bottom:40px;">Project Screenshots</h2>
+                    <div class="case-image-wrapper" id="caseGallery" style="min-height:420px;">
                         <img id="caseMockupImage" src="" alt="Project mockup" class="case-detail-image">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Project reviews -->
+            <section class="experience bg-alternate" id="projectReviewsSection" style="padding: 80px 20px;">
+                <div style="max-width:1100px; margin:0 auto; text-align:center;">
+                    <h2 style="font-family:var(--font-heading); font-size:1.5rem; color:#fff; margin-bottom:12px;">Reviews for This Project</h2>
+                    <p style="color:#888; margin-bottom:28px;">Approved client feedback tagged to this case study.</p>
+                    <div class="project-reviews" id="projectReviewsGrid">
+                        <p style="color:#666; grid-column:1/-1;">Loading reviews...</p>
+                    </div>
+                    <div style="margin-top:28px;">
+                        <a id="projReviewButtonFooter" href="/reviews" class="btn btn-primary"><span>Leave a Review for This Project</span></a>
                     </div>
                 </div>
             </section>
@@ -169,7 +203,7 @@
             <!-- Related Projects -->
             <section class="demos bg-alternate" style="border-top:1px solid #111; border-bottom:1px solid #111; padding: 80px 20px;">
                 <div style="max-width:1100px; margin:0 auto;">
-                    <h3 style="font-family:var(--font-heading); font-size:1.5rem; color:#fff; margin-bottom:40px; text-align:center;">Related Projects</h3>
+                    <h2 style="font-family:var(--font-heading); font-size:1.5rem; color:#fff; margin-bottom:40px; text-align:center;">Related Projects</h2>
                     <div class="demos-grid" id="relatedProjectsGrid">
                         <!-- Dynamically filled -->
                     </div>
@@ -200,6 +234,7 @@
             <a href="/projects" style="color: #888; text-decoration: none; font-size: 0.9rem;">Work</a>
             <a href="/software" style="color: #888; text-decoration: none; font-size: 0.9rem;">Software</a>
             <a href="/about" style="color: #888; text-decoration: none; font-size: 0.9rem;">About</a>
+            <a href="/journey" style="color: #888; text-decoration: none; font-size: 0.9rem;">Journey</a>
             <a href="/contact" style="color: #888; text-decoration: none; font-size: 0.9rem;">Contact</a>
             <a href="/privacy-policy" style="color: #888; text-decoration: none; font-size: 0.9rem;">Privacy</a>
             <a href="/terms" style="color: #888; text-decoration: none; font-size: 0.9rem;">Terms</a>
@@ -226,125 +261,204 @@
     <script src="../firebase-init.js"></script>
     <script src="../script.js"></script>
     
-    <!-- Local Page Routing Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Get slug from search query or window pathname
+        function getCaseStudySlug() {
             const urlParams = new URLSearchParams(window.location.search);
             let slug = urlParams.get('slug');
-            
             if (!slug) {
-                // Support clean Vercel rewrites: /projects/al-noor-solar-energy
-                const pathParts = window.location.pathname.split('/');
-                slug = pathParts[pathParts.length - 1] || pathParts[pathParts.length - 2];
-                // Fallback check: if the path split is "case-study.html" or "projects", it is not a slug
-                if (slug === 'case-study.html' || slug === 'case-study' || slug === 'projects' || slug === '') {
+                const pathParts = window.location.pathname.split('/').filter(Boolean);
+                slug = pathParts[pathParts.length - 1];
+                if (slug === 'case-study.html' || slug === 'case-study' || slug === 'projects' || !slug) {
                     slug = null;
                 }
             }
+            return slug;
+        }
 
-            // 2. Look up project
-            const project = window.projectsData ? window.projectsData.find(p => p.slug === slug) : null;
+        function showCaseStudyError() {
+            document.getElementById('caseStudyError').style.display = 'block';
+            document.getElementById('caseStudyContent').style.display = 'none';
+            const loader = document.getElementById('loaderScreen');
+            if (loader) {
+                loader.style.opacity = '0';
+                loader.style.pointerEvents = 'none';
+            }
+        }
 
-            const errorSection = document.getElementById('caseStudyError');
-            const contentArticle = document.getElementById('caseStudyContent');
+        function reviewMatchesProject(review, project) {
+            const slug = (project.slug || '').toLowerCase();
+            const name = (project.name || '').toLowerCase();
+            const rp = (review.project || '').toLowerCase();
+            const rs = (review.projectSlug || '').toLowerCase();
+            if (rs && slug && rs === slug) return true;
+            if (!rp || !name) return false;
+            return rp === name || rp === slug || name.indexOf(rp) !== -1 || rp.indexOf(name) !== -1;
+        }
 
-            if (!project) {
-                // Show Error Screen
-                errorSection.style.display = 'block';
-                const loader = document.getElementById('loaderScreen');
-                if (loader) {
-                    loader.style.opacity = '0';
-                    loader.style.pointerEvents = 'none';
-                }
+        function loadProjectReviews(project) {
+            const grid = document.getElementById('projectReviewsGrid');
+            if (!grid) return;
+            if (!window.db) {
+                grid.innerHTML = '<p style="color:#666; grid-column:1/-1;">No reviews to display yet.</p>';
                 return;
             }
+            window.db.collection('reviews').where('status', '==', 'approved').get()
+                .then((snapshot) => {
+                    const matches = [];
+                    snapshot.forEach((doc) => {
+                        const data = doc.data();
+                        if (data.flagged) return;
+                        if (reviewMatchesProject(data, project)) matches.push(data);
+                    });
+                    if (!matches.length) {
+                        grid.innerHTML = '<p style="color:#666; grid-column:1/-1;">No approved reviews for this project yet. Be the first to share your experience.</p>';
+                        return;
+                    }
+                    grid.innerHTML = '';
+                    matches.slice(0, 6).forEach((r) => {
+                        const card = document.createElement('article');
+                        card.className = 'project-review-card';
+                        const stars = '★'.repeat(r.rating || 0) + '☆'.repeat(5 - (r.rating || 0));
+                        const h = document.createElement('h3');
+                        h.textContent = r.name || 'Client';
+                        const rating = document.createElement('div');
+                        rating.style.color = '#ffd700';
+                        rating.style.fontSize = '0.85rem';
+                        rating.textContent = stars;
+                        const p = document.createElement('p');
+                        p.textContent = r.review || '';
+                        card.appendChild(h);
+                        card.appendChild(rating);
+                        card.appendChild(p);
+                        grid.appendChild(card);
+                    });
+                })
+                .catch(() => {
+                    grid.innerHTML = '<p style="color:#666; grid-column:1/-1;">Reviews could not be loaded.</p>';
+                });
+        }
 
-            // Show Content Screen
+        function renderCaseStudy(project) {
+            const errorSection = document.getElementById('caseStudyError');
+            const contentArticle = document.getElementById('caseStudyContent');
+            errorSection.style.display = 'none';
             contentArticle.style.display = 'block';
 
-            // Bind project specs
-            document.getElementById('metaTitle').textContent = `${project.name} | SkyEagle Studio Case Study`;
-            document.getElementById('projName').textContent = project.name;
-            document.getElementById('projCategory').textContent = project.category;
-            document.getElementById('projIndustry').textContent = `Industry: ${project.industry}`;
-            document.getElementById('projDescription').textContent = project.description;
-            document.getElementById('caseDeploy').textContent = project.type;
+            const pageTitle = `${project.name} | SkyEagle Studio Case Study`;
+            const pageDesc = project.description || `Case study: ${project.name} — ${project.industry || 'custom software'} by SkyEagle Studio.`;
+            const pageUrl = `https://skyeaglestudio.com/projects/${project.slug}`;
 
-            // Bind challenge/solution if specific, or keep custom templates
-            if (project.slug === 'dental-clinics-management-software') {
+            document.getElementById('metaTitle').textContent = pageTitle;
+            document.getElementById('metaDesc').setAttribute('content', pageDesc);
+            document.getElementById('canonicalLink').setAttribute('href', pageUrl);
+            document.getElementById('ogTitle').setAttribute('content', pageTitle);
+            document.getElementById('ogDesc').setAttribute('content', pageDesc);
+            document.getElementById('ogUrl').setAttribute('content', pageUrl);
+
+            document.getElementById('projName').textContent = project.name;
+            document.getElementById('projCategory').textContent = project.category || 'Project';
+            document.getElementById('projIndustry').textContent = `Industry: ${project.industry || 'Business'}`;
+            document.getElementById('projDescription').textContent = project.description || '';
+            document.getElementById('caseDeploy').textContent = project.type || 'Web Platform';
+
+            if (project.challenge) document.getElementById('caseChallenge').textContent = project.challenge;
+            if (project.solution) document.getElementById('caseSolution').textContent = project.solution;
+            if (project.slug === 'dental-clinics-management-software' && !project.challenge) {
                 document.getElementById('caseChallenge').textContent = "Doctors and dental practices needed a central Patient Records log, Invoices tracker, and Scheduler that could function completely offline at local front desks, yet synchronize patient records with online database backups when connection became active.";
                 document.getElementById('caseSolution').textContent = "Engineered a Next.js offline index DB layer combined with a secure Firebase DB backend. Implemented scheduling dashboards, printable invoices, doctors schedules, and prescription logs with 100% data durability.";
             }
 
-            // Bind tags
+            if (project.outcome) {
+                document.getElementById('caseOutcomeHeading').style.display = 'block';
+                document.getElementById('caseOutcome').textContent = project.outcome;
+            }
+            if (project.clientName) {
+                document.getElementById('caseClientRow').style.display = 'flex';
+                document.getElementById('caseClient').textContent = project.clientName;
+            }
+            if (project.price) {
+                document.getElementById('casePriceRow').style.display = 'flex';
+                document.getElementById('casePrice').textContent = project.price;
+            }
+
             const techContainer = document.getElementById('caseTechTags');
             techContainer.innerHTML = '';
-            project.technologies.forEach(tech => {
+            const techs = window.normalizeTechList ? window.normalizeTechList(project.technologies) : (project.technologies || []);
+            techs.forEach(tech => {
                 const tag = document.createElement('span');
                 tag.className = 'tech-tag';
                 tag.textContent = tech;
                 techContainer.appendChild(tag);
             });
 
-            // Bind Live URL link
             const liveBtn = document.getElementById('projLiveButton');
-            liveBtn.href = project.liveUrl;
-            // If it's a contact form redirection link, change open in new tab
-            if (project.liveUrl.startsWith('contact.html') || project.liveUrl.startsWith('/contact')) {
-                liveBtn.removeAttribute('target');
-                liveBtn.removeAttribute('rel');
-                liveBtn.querySelector('i').className = 'fas fa-arrow-right';
-                liveBtn.querySelector('span').innerHTML = 'Inquire About Product <i class="fas fa-arrow-right" style="margin-left:8px;"></i>';
-            }
-
-            // Bind Image Showcase
-            const mockupImg = document.getElementById('caseMockupImage');
-            if (project.imageUrl) {
-                mockupImg.src = `../${project.imageUrl}`;
-                mockupImg.alt = project.name;
+            const liveUrl = project.liveUrl || '/contact';
+            liveBtn.href = liveUrl;
+            if (window.isExternalLiveUrl && window.isExternalLiveUrl(liveUrl)) {
+                liveBtn.target = '_blank';
+                liveBtn.rel = 'noopener noreferrer';
+                liveBtn.querySelector('span').innerHTML = 'Visit Live Website &rarr;';
             } else {
-                // Create CSS fallback mockup graphic
-                const wrapper = mockupImg.parentElement;
-                wrapper.innerHTML = '';
-                
-                const customMockup = document.createElement('div');
-                customMockup.className = 'custom-mockup-frame';
-                customMockup.style.borderColor = project.mockupBorderColor || '#ff00f7';
-                
-                const icon = project.mockupIcon || 'fa-globe';
-                const subtitle = project.mockupSubtitle || 'Web Application';
-                
-                customMockup.innerHTML = `
-                    <div class="mockup-header">
-                        <span class="mock-dot red"></span>
-                        <span class="mock-dot yellow"></span>
-                        <span class="mock-dot green"></span>
-                        <span class="mockup-url">${project.liveUrl}</span>
-                    </div>
-                    <div class="mockup-body">
-                        <i class="fas ${icon} mockup-body-icon" style="color: ${project.mockupBorderColor || '#ff00f7'};"></i>
-                        <h3>${project.name}</h3>
-                        <p>${subtitle}</p>
-                    </div>
-                `;
-                wrapper.appendChild(customMockup);
+                liveBtn.removeAttribute('target');
+                liveBtn.href = '/contact';
+                liveBtn.querySelector('span').innerHTML = 'Inquire About Product';
             }
 
-            // Render Related Projects (exclude current)
+            const reviewHref = window.reviewLinkForProject ? window.reviewLinkForProject(project.name, project.slug) : '/reviews';
+            const reviewBtn = document.getElementById('projReviewButton');
+            const reviewBtnFooter = document.getElementById('projReviewButtonFooter');
+            if (reviewBtn) reviewBtn.href = reviewHref;
+            if (reviewBtnFooter) reviewBtnFooter.href = reviewHref;
+
+            const galleryHost = document.getElementById('caseGallery');
+            if (galleryHost && window.buildShotGallery) {
+                galleryHost.innerHTML = '';
+                galleryHost.style.minHeight = '420px';
+                galleryHost.appendChild(window.buildShotGallery(window.projectImageList(project), project.name, true));
+            }
+
+            loadProjectReviews(project);
+
             const relatedGrid = document.getElementById('relatedProjectsGrid');
             if (relatedGrid && window.projectsData) {
-                const related = window.projectsData
-                    .filter(p => p.slug !== project.slug)
-                    .slice(0, 3);
-                
                 relatedGrid.innerHTML = '';
-                related.forEach(relProj => {
-                    const card = createProjectCard(relProj, true); // True tells it we are in subfolder
-                    relatedGrid.appendChild(card);
+                window.projectsData.filter(p => p.slug !== project.slug).slice(0, 3).forEach(relProj => {
+                    relatedGrid.appendChild(createProjectCard(relProj, true));
                 });
             }
-        });
+        }
+
+        async function resolveCaseStudy() {
+            const slug = getCaseStudySlug();
+            if (!slug) {
+                showCaseStudyError();
+                return;
+            }
+
+            if (typeof window.mergeRemoteProjects === 'function') {
+                await window.mergeRemoteProjects();
+            }
+
+            let project = (window.projectsData || []).find(p => p.slug === slug);
+            if (!project && window.db) {
+                try {
+                    const doc = await window.db.collection('portfolioProjects').doc(slug).get();
+                    if (doc.exists && doc.data().published !== false && doc.data().hidden !== true) {
+                        project = Object.assign({ slug: slug, firestoreId: doc.id }, doc.data());
+                    }
+                } catch (err) {
+                    console.warn('Firestore project lookup failed', err);
+                }
+            }
+
+            if (!project) {
+                showCaseStudyError();
+                return;
+            }
+            renderCaseStudy(project);
+        }
+
+        document.addEventListener('DOMContentLoaded', resolveCaseStudy);
     </script>
 </body>
 </html>

@@ -3,143 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog & Tech Insights | SkyEagle Studio</title>
-    <meta name="description" content="Explore professional software engineering guides, SaaS architectures, mobile app strategies, and AI integration insights by SkyEagle Studio.">
-    
-    <!-- Fonts & Icons -->
+    <meta name="google-site-verification" content="heVo5-MxaPvntQwwciXHihH2LsQz2KBCcofxtWIUek8" />
+    <link rel="canonical" href="https://skyeaglestudio.com/blog">
+    <meta property="og:title" content="Build Notes on Web Development, SaaS &amp; Dental Clinic Software | SkyEagle Studio">
+    <meta property="og:description" content="Practical notes from a solo full-stack developer in Lahore on websites, custom software, Flutter apps, SaaS, and AI products built for real businesses.">
+    <meta property="og:url" content="https://skyeaglestudio.com/blog">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://skyeaglestudio.com/images/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Build Notes on Web Development, SaaS &amp; Dental Clinic Software | SkyEagle Studio</title>
+    <meta name="description" content="Practical notes from a solo full-stack developer in Lahore on websites, custom software, Flutter apps, SaaS, and AI products built for real businesses.">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    
-    <style>
-        .blog-header {
-            padding: 140px 20px 60px;
-            text-align: center;
-        }
-
-        .blog-header h1 {
-            font-family: var(--font-heading);
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: #fff;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .blog-header p {
-            color: #888;
-            font-size: 1.05rem;
-            max-width: 650px;
-            margin: 0 auto;
-        }
-
-        /* Controls */
-        .blog-controls-section {
-            max-width: 1200px;
-            margin: 0 auto 40px;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .blog-search-bar {
-            position: relative;
-            flex-grow: 1;
-            max-width: 450px;
-            min-width: 280px;
-        }
-
-        .blog-search-bar i {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--primary);
-        }
-
-        .blog-search-bar input {
-            width: 100%;
-            background: rgba(10, 10, 10, 0.4);
-            border: 1px solid #1c1c1c;
-            border-radius: 50px;
-            padding: 12px 18px 12px 45px;
-            color: #fff;
-            font-size: 0.88rem;
-            outline: none;
-            font-family: var(--font-body);
-        }
-
-        .blog-search-bar input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
-        }
-
-        .blog-category-select {
-            background: rgba(10, 10, 10, 0.4);
-            border: 1px solid #1c1c1c;
-            color: #aaa;
-            border-radius: 50px;
-            padding: 0 25px;
-            height: 46px;
-            font-size: 0.85rem;
-            outline: none;
-            font-family: var(--font-body);
-            cursor: pointer;
-            min-width: 180px;
-        }
-
-        /* Grid */
-        .blog-grid-section {
-            max-width: 1200px;
-            margin: 0 auto 100px;
-            padding: 0 20px;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 30px;
-        }
-
-        .no-posts-alert {
-            text-align: center;
-            padding: 80px 20px;
-            background: rgba(10, 10, 10, 0.2);
-            border: 1px dashed #1c1c1c;
-            border-radius: 10px;
-            color: #555;
-            grid-column: 1 / -1;
-            font-size: 0.95rem;
-        }
-
-        @media (max-width: 768px) {
-            .blog-header h1 {
-                font-size: 2.2rem;
-            }
-            .blog-controls-section {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .blog-search-bar {
-                max-width: 100%;
-            }
-        }
-    </style>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <script src="theme-switcher.js"></script>
 </head>
 <body>
-    <!-- Loading Screen Transition -->
     <div class="loading-screen" id="loaderScreen" aria-hidden="true">
         <div class="loader"></div>
     </div>
-
-    <!-- Custom Neon Cursor Follower -->
     <div class="cursor" aria-hidden="true"></div>
     <div class="cursor-follower" aria-hidden="true"></div>
-
-    <!-- Cosmic Background Elements -->
     <div class="bg-container" aria-hidden="true">
         <div class="grid-overlay"></div>
         <div class="orb orb1"></div>
@@ -147,70 +32,92 @@
         <div class="orb orb3"></div>
     </div>
 
-    <!-- Navigation Header -->
+    <div class="contact-sidebar">
+        <a href="https://wa.me/923188791637?text=Hi!%20I%20want%20to%20discuss%20a%20project" class="contact-widget" target="_blank" id="sidebarWhatsapp">
+            <div class="pulse-dot"></div>
+            <i class="fab fa-whatsapp"></i>
+            <div class="contact-info-text">
+                <span class="label">WhatsApp</span>
+                <span class="number">0318 8791637</span>
+            </div>
+        </a>
+        <a href="tel:+923184195665" class="contact-widget" id="sidebarCall">
+            <div class="pulse-dot"></div>
+            <i class="fas fa-phone-alt"></i>
+            <div class="contact-info-text">
+                <span class="label">Call Us</span>
+                <span class="number">0318 4195665</span>
+            </div>
+        </a>
+    </div>
+
     <nav>
         <div class="logo-container">
             <a href="/" style="text-decoration: none;">
-                <div class="logo">SkyEagle Studio</div>
+                <div class="logo"><img src="images/logo.png" alt="SkyEagle Studio" class="header-logo">SkyEagle Studio</div>
             </a>
             <div class="logo-subtitle">SOFTWARE STUDIO</div>
         </div>
-        <div class="hamburger-menu" id="navToggle" aria-label="Toggle Navigation">
-            <i class="fas fa-bars"></i>
+        <div class="hamburger-menu" id="navToggle">
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+            <span class="line line-3"></span>
         </div>
-                <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/projects">Work</a></li>
-            <li><a href="/software">Software</a></li>
-            <li><a href="/reviews">Reviews</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li class="nav-cta-item"><a href="/contact" class="btn btn-primary nav-cta-btn">Start a Project</a></li>
+        <ul class="nav-links">
+            <li><a href="/"><span class="nav-num">01</span> Home</a></li>
+            <li><a href="services"><span class="nav-num">02</span> Services</a></li>
+            <li><a href="projects"><span class="nav-num">03</span> Work</a></li>
+            <li><a href="software"><span class="nav-num">04</span> Software</a></li>
+            <li><a href="reviews"><span class="nav-num">05</span> Reviews</a></li>
+            <li><a href="blog"><span class="nav-num">06</span> Blog</a></li>
+            <li><a href="about"><span class="nav-num">07</span> About</a></li>
+            <li><a href="journey"><span class="nav-num">08</span> Journey</a></li>
+            <li><a href="contact"><span class="nav-num">09</span> Contact</a></li>
+            <li class="nav-mobile-cta"><a href="contact" class="btn btn-primary"><span>Start a Project &rarr;</span></a></li>
         </ul>
     </nav>
 
-    <main>
-        <!-- Blog Page Header -->
-        <section class="blog-header">
-            <h1>Latest Insights</h1>
-            <p>Practical guides, architectural analysis, and engineering solutions on SaaS, databases, mobile apps, and artificial intelligence.</p>
+    <main style="padding-top: 50px;">
+        <section class="experience" style="background:transparent; padding:60px 20px 20px;">
+            <span class="portfolio-badge" style="position:static; display:inline-block; margin-bottom:15px;">Build Notes</span>
+            <h1 class="experience-title" style="font-size: 2.5rem; margin-bottom:20px; line-height:1.2;">Web Development, SaaS &amp;<br>Dental Clinic Software Notes</h1>
+            <p style="text-align: center; color: var(--gray-light); max-width:720px; margin: 0 auto 40px; font-size:1.1rem; line-height:1.6;">Short, practical notes from live client work — websites, custom software, Flutter apps, and AI products shipped by a solo founder in Lahore.</p>
         </section>
 
-        <!-- Search & Filters Controls -->
-        <section class="blog-controls-section">
-            <div class="blog-search-bar">
-                <i class="fas fa-magnifying-glass"></i>
-                <input type="text" id="blogSearchInput" placeholder="Search insights by title, excerpt or tech tags...">
+        <section class="experience" style="padding: 20px 20px 80px;">
+            <div class="services-grid" style="max-width:1100px; margin:0 auto;">
+                <article class="service-card">
+                    <div class="service-icon"><i class="fas fa-code"></i></div>
+                    <h2 class="service-title">How I Build Client Websites</h2>
+                    <p class="service-desc">Most of the live sites in the portfolio started as a scoping call, a homepage, and a lead form that actually gets used. The longer version is on the Journey page.</p>
+                    <a href="/journey" class="service-link">Read the journey &rarr;</a>
+                </article>
+                <article class="service-card">
+                    <div class="service-icon"><i class="fas fa-tooth"></i></div>
+                    <h2 class="service-title">Dental Clinic Software in the Real World</h2>
+                    <p class="service-desc">Appointments, billing, and reception workflows only work if the software matches how the clinic actually runs. Case studies cover Al-Fazal Hospital and related healthcare builds.</p>
+                    <a href="/projects/al-fazal-hospital" class="service-link">View the hospital case study &rarr;</a>
+                </article>
+                <article class="service-card">
+                    <div class="service-icon"><i class="fas fa-cloud"></i></div>
+                    <h2 class="service-title">SaaS, Mobile Apps, and AI Products</h2>
+                    <p class="service-desc">DoorSkill, Zepiva, and custom SaaS work sit alongside client retainers. The Work page lists each product with its own URL so they can rank individually.</p>
+                    <a href="/projects" class="service-link">Browse live projects &rarr;</a>
+                </article>
             </div>
-            <select class="blog-category-select" id="blogCategoryFilter">
-                <option value="all">All Categories</option>
-                <option value="Web Development">Web Development</option>
-                <option value="Software Development">Software Development</option>
-                <option value="SaaS">SaaS Platforms</option>
-                <option value="Mobile Apps">Mobile Apps</option>
-                <option value="AI">Artificial Intelligence</option>
-                <option value="SEO">SEO & Speed</option>
-                <option value="Business Technology">Business Technology</option>
-            </select>
         </section>
 
-        <!-- Blog Grid -->
-        <section class="blog-grid-section">
-            <div class="blog-grid" id="blogGridWrapper">
-                <!-- Dynamic cards injected here -->
-                <div style="text-align: center; grid-column: 1 / -1; padding: 50px 0;">
-                    <i class="fas fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--primary);"></i>
-                    <p style="color:#666; margin-top: 10px;">Loading engineering logs...</p>
-                </div>
+        <section class="experience" style="padding: 40px 20px 100px; text-align:center;">
+            <div style="max-width:700px; margin:0 auto;">
+                <h2 style="font-family: var(--font-heading); font-size:2rem; color:#fff; margin-bottom:20px;">Want a system built the same way?</h2>
+                <p style="color:#888; font-size:1rem; margin-bottom:35px; line-height:1.6;">Discuss web development, custom software, or a dental clinic system directly with the founder.</p>
+                <a href="/contact" class="btn btn-primary"><span>Start a Project</span></a>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
-        <div class="footer-team">SkyEagle Studio</div>
+        <img src="images/logo.png" alt="SkyEagle Studio Logo" class="footer-logo"><div class="footer-team">SkyEagle Studio</div>
         <p style="color: #aaa; margin-bottom: 20px; font-size: 1.1rem;">Digital products, software and AI solutions built for real businesses.</p>
         <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 20px;">
             <a href="/" style="color: #888; text-decoration: none; font-size: 0.9rem;">Home</a>
@@ -218,6 +125,7 @@
             <a href="/projects" style="color: #888; text-decoration: none; font-size: 0.9rem;">Work</a>
             <a href="/software" style="color: #888; text-decoration: none; font-size: 0.9rem;">Software</a>
             <a href="/about" style="color: #888; text-decoration: none; font-size: 0.9rem;">About</a>
+            <a href="/journey" style="color: #888; text-decoration: none; font-size: 0.9rem;">Journey</a>
             <a href="/contact" style="color: #888; text-decoration: none; font-size: 0.9rem;">Contact</a>
             <a href="/privacy-policy" style="color: #888; text-decoration: none; font-size: 0.9rem;">Privacy</a>
             <a href="/terms" style="color: #888; text-decoration: none; font-size: 0.9rem;">Terms</a>
@@ -234,118 +142,11 @@
         <p style="color: #666; font-size: 0.9rem; margin-top: 20px;">© 2026 SkyEagle Studio. All rights reserved. | Deployed Globally</p>
     </footer>
 
-    <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="firebase-init.js"></script>
-    <script src="blog-data.js"></script>
     <script src="script.js"></script>
-
-    <!-- Dynamic Renderer -->
-    <script>
-        let blogPosts = [];
-        let activeCategory = 'all';
-        let searchQuery = '';
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const gridWrapper = document.getElementById('blogGridWrapper');
-            const searchInput = document.getElementById('blogSearchInput');
-            const categorySelect = document.getElementById('blogCategoryFilter');
-
-            // Load data
-            if (window.blogPostsData) {
-                blogPosts = window.blogPostsData;
-                renderBlogPosts();
-            } else {
-                if (gridWrapper) {
-                    gridWrapper.innerHTML = `<div class="no-posts-alert">Database connection error.</div>`;
-                }
-            }
-
-            // Search listener
-            if (searchInput) {
-                searchInput.addEventListener('input', (e) => {
-                    searchQuery = e.target.value.toLowerCase().trim();
-                    renderBlogPosts();
-                });
-            }
-
-            // Filter listener
-            if (categorySelect) {
-                categorySelect.addEventListener('change', (e) => {
-                    activeCategory = e.target.value;
-                    renderBlogPosts();
-                });
-            }
-        });
-
-        function renderBlogPosts() {
-            const wrapper = document.getElementById('blogGridWrapper');
-            if (!wrapper) return;
-
-            wrapper.innerHTML = '';
-            let count = 0;
-
-            blogPosts.forEach(post => {
-                const title = post.title.toLowerCase();
-                const excerpt = post.excerpt.toLowerCase();
-                const category = post.category;
-                
-                // Matches filter
-                const matchesCategory = activeCategory === 'all' || category === activeCategory;
-                
-                // Matches search query
-                const matchesSearch = title.includes(searchQuery) || excerpt.includes(searchQuery) || category.toLowerCase().includes(searchQuery);
-
-                if (matchesCategory && matchesSearch) {
-                    const card = document.createElement('div');
-                    card.className = 'blog-card';
-                    card.innerHTML = `
-                        <div class="blog-image-wrapper">
-                            <span class="blog-badge">${escapeHtml(post.category)}</span>
-                            <img src="${post.featuredImage}" alt="${escapeHtml(post.title)}" class="blog-image" loading="lazy">
-                        </div>
-                        <div class="blog-card-content">
-                            <div>
-                                <h3 class="blog-card-title">${escapeHtml(post.title)}</h3>
-                                <p class="blog-card-excerpt">${escapeHtml(post.excerpt)}</p>
-                            </div>
-                            <div class="blog-card-footer">
-                                <div class="blog-author-info">
-                                    <span class="blog-author-name">${escapeHtml(post.author)}</span>
-                                    <span class="blog-meta-date">${escapeHtml(post.publishedAt)}</span>
-                                </div>
-                                <a href="/blog/${post.slug}" class="btn btn-secondary" style="font-size:0.75rem; padding:8px 16px; margin-left:auto;"><span>Read Article</span></a>
-                            </div>
-                        </div>
-                    `;
-                    wrapper.appendChild(card);
-                    count++;
-                }
-            });
-
-            if (count === 0) {
-                wrapper.innerHTML = `
-                    <div class="no-posts-alert">
-                        <i class="fas fa-magnifying-glass" style="font-size:1.5rem; margin-bottom:10px; display:block; color:#444;"></i>
-                        <span>No articles match your search parameters.</span>
-                    </div>
-                `;
-            }
-        }
-
-        function escapeHtml(text) {
-            const map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            };
-            return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
-        }
-    </script>
 </body>
 </html>

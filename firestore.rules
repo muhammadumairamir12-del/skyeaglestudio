@@ -2,51 +2,56 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Secure helper function checking user UID in allowlist collection
     function isAdmin() {
       return request.auth != null && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
     }
 
-    // Security rules for client reviews collection
     match /reviews/{reviewId} {
       allow read: if resource.data.status == 'approved' || isAdmin();
-      
-      // Public can only submit reviews in 'pending' status with 0 likes and reports
-      allow create: if request.resource.data.status == 'pending' 
-                    && request.resource.data.likes == 0 
+
+      allow create: if request.resource.data.status == 'pending'
+                    && request.resource.data.likes == 0
                     && request.resource.data.reports == 0;
-                    
-      // Public can only increment likes or reports by 1 on approved reviews
-      allow update: if isAdmin() 
-                    || (resource.data.status == 'approved' 
-                        && request.resource.data.status == 'approved'
+
+      allow update: if isAdmin()
+                    || (resource.data.status == 'approved'
                         && request.resource.data.name == resource.data.name
                         && request.resource.data.review == resource.data.review
                         && (request.resource.data.likes == resource.data.likes + 1 || request.resource.data.likes == resource.data.likes)
                         && (request.resource.data.reports == resource.data.reports + 1 || request.resource.data.reports == resource.data.reports)
+                        && (request.resource.data.flagged == resource.data.flagged || request.resource.data.flagged == true)
+                        && (request.resource.data.status == 'approved' || request.resource.data.status == 'pending')
                        );
-                       
+
       allow delete: if isAdmin();
     }
 
-    // Security rules for review reports filing log collection
     match /reviewReports/{reportId} {
       allow read: if isAdmin();
-      allow create: if true; // Public can create report logs
+      allow create: if true;
       allow update, delete: if isAdmin();
     }
 
-    // Security rules for admins allowlist table
     match /admins/{adminId} {
       allow read: if request.auth != null;
       allow write: if isAdmin();
     }
-    
-    // Security rules for leads collection (contact forms)
+
     match /leads/{leadId} {
       allow read: if isAdmin();
-      allow create: if true; // Public can submit scoping requests
+      allow create: if true;
       allow update, delete: if isAdmin();
+    }
+
+    match /users/{userId} {
+      allow read: if isAdmin();
+      allow create: if true;
+      allow update, delete: if isAdmin();
+    }
+
+    match /portfolioProjects/{projectId} {
+      allow read: if isAdmin() || resource.data.published == true || resource.data.hidden == true;
+      allow write: if isAdmin();
     }
   }
 }

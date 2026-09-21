@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Reviews & Testimonials | SkyEagle Studio</title>
+        <meta name="google-site-verification" content="heVo5-MxaPvntQwwciXHihH2LsQz2KBCcofxtWIUek8" />
+    <link rel="canonical" href="https://skyeaglestudio.com/reviews">
+    <meta property="og:title" content="Client Reviews & Testimonials | SkyEagle Studio">
+    <meta property="og:description" content="Read real client reviews and testimonials about SkyEagle Studio software systems, SaaS architectures, mobile app developments, and custom calculators.">
+    <meta property="og:url" content="https://skyeaglestudio.com/reviews">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://skyeaglestudio.com/images/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+<title>Client Reviews & Testimonials | SkyEagle Studio</title>
     <meta name="description" content="Read real client reviews and testimonials about SkyEagle Studio software systems, SaaS architectures, mobile app developments, and custom calculators.">
     
     <!-- Fonts & Icons -->
@@ -53,7 +61,8 @@
             text-align: center;
         }
 
-        .stat-item h3 {
+        .stat-item h3,
+        .stat-item .stat-label {
             font-size: 0.85rem;
             color: #666;
             text-transform: uppercase;
@@ -142,6 +151,7 @@
             border: 1px solid var(--primary);
         }
 
+        .reviewer-info h3,
         .reviewer-info h4 {
             font-family: var(--font-heading);
             font-size: 1.05rem;
@@ -418,7 +428,8 @@
             <li><a href="reviews"><span class="nav-num">05</span> Reviews</a></li>
             <li><a href="blog"><span class="nav-num">06</span> Blog</a></li>
             <li><a href="about"><span class="nav-num">07</span> About</a></li>
-            <li><a href="contact"><span class="nav-num">08</span> Contact</a></li>
+            <li><a href="journey"><span class="nav-num">08</span> Journey</a></li>
+            <li><a href="contact"><span class="nav-num">09</span> Contact</a></li>
             <li class="nav-mobile-cta"><a href="contact" class="btn btn-primary"><span>Start a Project &rarr;</span></a></li>
         </ul>
     </nav>
@@ -435,14 +446,14 @@
             <!-- Stats Summary Counters -->
             <div class="summary-stats-box">
                 <div class="stat-item">
-                    <h3>Average Rating</h3>
+                    <p class="stat-label">Average Rating</p>
                     <div class="value" id="avgRatingVal">0.0</div>
                     <div class="stat-stars" id="avgRatingStars">
                         <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
                     </div>
                 </div>
                 <div class="stat-item">
-                    <h3>Total Reviews</h3>
+                    <p class="stat-label">Total Reviews</p>
                     <div class="value" id="totalReviewsVal">0</div>
                     <p style="color:#555; font-size:0.8rem; margin-top:5px; text-transform:uppercase;">Approved Logs</p>
                 </div>
@@ -461,6 +472,7 @@
             </div>
 
             <!-- Reviews Grid Wrapper -->
+            <h2 class="experience-title" style="text-align:center; margin-bottom:30px;">Approved Client Testimonials</h2>
             <div class="reviews-grid" id="reviewsWrapper">
                 <div style="text-align: center; grid-column: 1 / -1; padding: 60px 0;">
                     <i class="fas fa-circle-notch fa-spin" style="font-size: 2.2rem; color: var(--primary);"></i>
@@ -521,6 +533,7 @@
                     <div class="form-group">
                         <label>Project Name / Product Built</label>
                         <input type="text" id="reviewProject" placeholder="e.g. Solar Bill Estimator Web App" required>
+                        <input type="hidden" id="reviewProjectSlug">
                     </div>
 
                     <div class="form-group">
@@ -582,6 +595,7 @@
             <a href="/projects" style="color: #888; text-decoration: none; font-size: 0.9rem;">Work</a>
             <a href="/software" style="color: #888; text-decoration: none; font-size: 0.9rem;">Software</a>
             <a href="/about" style="color: #888; text-decoration: none; font-size: 0.9rem;">About</a>
+            <a href="/journey" style="color: #888; text-decoration: none; font-size: 0.9rem;">Journey</a>
             <a href="/contact" style="color: #888; text-decoration: none; font-size: 0.9rem;">Contact</a>
             <a href="/privacy-policy" style="color: #888; text-decoration: none; font-size: 0.9rem;">Privacy</a>
             <a href="/terms" style="color: #888; text-decoration: none; font-size: 0.9rem;">Terms</a>
@@ -615,6 +629,22 @@
         let activeSortRule = 'newest';
 
         document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const prefillProject = params.get('project');
+            const prefillSlug = params.get('slug');
+            if (prefillProject) {
+                const projectInput = document.getElementById('reviewProject');
+                if (projectInput) projectInput.value = prefillProject;
+            }
+            if (prefillSlug) {
+                const slugInput = document.getElementById('reviewProjectSlug');
+                if (slugInput) slugInput.value = prefillSlug;
+            }
+            if (prefillProject || prefillSlug) {
+                const box = document.getElementById('submitReviewFormSection');
+                if (box) setTimeout(() => box.scrollIntoView({ behavior: 'smooth', block: 'start' }), 400);
+            }
+
             // Stars selection setup
             const stars = document.querySelectorAll('#starsSelector i');
             const ratingInput = document.getElementById('reviewRatingInput');
@@ -654,6 +684,7 @@
                     const rating = parseInt(ratingInput.value);
                     const review = document.getElementById('reviewText').value;
                     const project = document.getElementById('reviewProject').value;
+                    const projectSlug = (document.getElementById('reviewProjectSlug') && document.getElementById('reviewProjectSlug').value) || '';
 
                     alertBox.style.display = 'none';
 
@@ -666,22 +697,27 @@
                             rating: rating,
                             review: review,
                             project: project,
-                            status: 'pending', // Requires admin moderation
+                            projectSlug: projectSlug,
+                            status: 'pending',
                             likes: 0,
                             reports: 0,
+                            flagged: false,
                             createdAt: firebase.firestore.FieldValue.serverTimestamp()
                         })
                         .then(() => {
+                            window.db.collection('users').add({
+                                name: name,
+                                email: email,
+                                type: 'review',
+                                date: firebase.firestore.FieldValue.serverTimestamp()
+                            }).catch(() => {});
                             alertBox.className = 'form-status-alert success';
                             alertBox.textContent = "Thank you! Your review has been submitted and is awaiting admin approval.";
                             alertBox.style.display = 'block';
                             form.reset();
                             
-                            // Reset stars to 5
                             stars.forEach(s => s.classList.add('active'));
                             ratingInput.value = 5;
-
-                            // Scroll to top of box
                             document.getElementById('submitReviewFormSection').scrollIntoView({ behavior: 'smooth' });
                         })
                         .catch((error) => {
@@ -715,13 +751,14 @@
                             createdAt: firebase.firestore.FieldValue.serverTimestamp()
                         })
                         .then(() => {
-                            // Update reports counter on review document securely via Firestore increment
                             return window.db.collection('reviews').doc(reviewId).update({
-                                reports: firebase.firestore.FieldValue.increment(1)
+                                reports: firebase.firestore.FieldValue.increment(1),
+                                flagged: true,
+                                status: 'pending'
                             });
                         })
                         .then(() => {
-                            alert("📋 Review report submitted successfully. Our admin team will investigate.");
+                            alert("📋 Review report submitted. It is hidden from the public page until an admin rechecks it.");
                             closeReportModal();
                             reportForm.reset();
                         })
@@ -766,6 +803,7 @@
                         reviewsList = [];
                         snapshot.forEach(doc => {
                             const data = doc.data();
+                            if (data.flagged) return;
                             reviewsList.push({
                                 id: doc.id,
                                 name: data.name,
@@ -786,6 +824,10 @@
                         // Sort and render list
                         sortReviewsList();
                         renderReviews();
+                        if (window.location.hash) {
+                            const target = document.querySelector(window.location.hash);
+                            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
                     }, (error) => {
                         console.error("Firestore reviews failed: ", error);
                         if (wrapper) {
@@ -883,7 +925,7 @@
                     <div class="review-card-header">
                         <div class="reviewer-avatar">${initial}</div>
                         <div class="reviewer-info">
-                            <h4>${escapeHtml(r.name)}</h4>
+                            <h3>${escapeHtml(r.name)}</h3>
                             ${companyRoleLine}
                         </div>
                     </div>
@@ -962,10 +1004,25 @@
         // Share Dialog
         function shareReview(reviewId) {
             const shareUrl = `${window.location.origin}/reviews#review-${reviewId}`;
+            const review = reviewsList.find(r => r.id === reviewId);
+            const shareData = {
+                title: review ? `${review.name} — SkyEagle Studio review` : 'SkyEagle Studio review',
+                text: review ? review.review : 'Client review',
+                url: shareUrl
+            };
+
+            if (navigator.share) {
+                navigator.share(shareData).catch(() => copyReviewLink(shareUrl));
+            } else {
+                copyReviewLink(shareUrl);
+            }
+        }
+
+        function copyReviewLink(shareUrl) {
             navigator.clipboard.writeText(shareUrl).then(() => {
                 alert("🔗 Link to this review copied to clipboard:\n" + shareUrl);
-            }).catch(err => {
-                console.error("Clipboard copy failed: ", err);
+            }).catch(() => {
+                window.prompt("Copy this review link:", shareUrl);
             });
         }
 
