@@ -476,7 +476,7 @@
             <div class="reviews-grid" id="reviewsWrapper">
                 <div style="text-align: center; grid-column: 1 / -1; padding: 60px 0;">
                     <i class="fas fa-circle-notch fa-spin" style="font-size: 2.2rem; color: var(--primary);"></i>
-                    <p style="color:#666; margin-top: 12px;">Querying Firestore review logs...</p>
+                    <p style="color:#666; margin-top: 12px;">Loading approved reviews...</p>
                 </div>
             </div>
 
@@ -515,7 +515,7 @@
                         </div>
                         <div class="form-group">
                             <label>Email Address</label>
-                            <input type="email" id="reviewEmail" placeholder="e.g. asim@company.com" required>
+                            <input type="email" id="reviewEmail" placeholder="e.g. asim@company.com">
                         </div>
                     </div>
 
@@ -532,7 +532,7 @@
 
                     <div class="form-group">
                         <label>Project Name / Product Built</label>
-                        <input type="text" id="reviewProject" placeholder="e.g. Solar Bill Estimator Web App" required>
+                        <input type="text" id="reviewProject" placeholder="e.g. Solar Bill Estimator Web App">
                         <input type="hidden" id="reviewProjectSlug">
                     </div>
 
@@ -612,22 +612,12 @@
         <p style="color: #666; font-size: 0.9rem; margin-top: 20px;">© 2026 SkyEagle Studio. All rights reserved. | Deployed Globally</p>
     </footer>
 
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="firebase-init.js"></script>
+    <!-- Site scripts + Realtime Database forms/reviews -->
     <script src="script.js"></script>
+    <script type="module" src="firebase-public.js"></script>
 
-    <!-- Reviews Business logic -->
+    <!-- Reviews UI helpers (stars + prefill). Load/submit handled by firebase-public.js -->
     <script>
-        let reviewsList = [];
-        let sortedReviewsList = [];
-        let limitPerPage = 6;
-        let activePageLimit = 6;
-        let activeSortRule = 'newest';
-
         document.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
             const prefillProject = params.get('project');
@@ -645,407 +635,21 @@
                 if (box) setTimeout(() => box.scrollIntoView({ behavior: 'smooth', block: 'start' }), 400);
             }
 
-            // Stars selection setup
             const stars = document.querySelectorAll('#starsSelector i');
             const ratingInput = document.getElementById('reviewRatingInput');
-
             stars.forEach(star => {
-                // Initialize default (5 active stars)
                 star.classList.add('active');
-
-                star.addEventListener('click', (e) => {
-                    const rating = parseInt(star.getAttribute('data-rating'));
+                star.addEventListener('click', () => {
+                    const rating = parseInt(star.getAttribute('data-rating'), 10);
                     ratingInput.value = rating;
-                    
-                    // Reset all stars and color active range
                     stars.forEach(s => {
-                        const r = parseInt(s.getAttribute('data-rating'));
-                        if (r <= rating) {
-                            s.classList.add('active');
-                        } else {
-                            s.classList.remove('active');
-                        }
+                        const r = parseInt(s.getAttribute('data-rating'), 10);
+                        if (r <= rating) s.classList.add('active');
+                        else s.classList.remove('active');
                     });
                 });
             });
-
-            // Form Submit handler
-            const form = document.getElementById('clientReviewForm');
-            const alertBox = document.getElementById('formAlertBox');
-
-            if (form) {
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    
-                    const name = document.getElementById('reviewName').value;
-                    const email = document.getElementById('reviewEmail').value;
-                    const company = document.getElementById('reviewCompany').value || '';
-                    const role = document.getElementById('reviewRole').value || '';
-                    const rating = parseInt(ratingInput.value);
-                    const review = document.getElementById('reviewText').value;
-                    const project = document.getElementById('reviewProject').value;
-                    const projectSlug = (document.getElementById('reviewProjectSlug') && document.getElementById('reviewProjectSlug').value) || '';
-
-                    alertBox.style.display = 'none';
-
-                    if (window.db) {
-                        window.db.collection('reviews').add({
-                            name: name,
-                            email: email,
-                            company: company,
-                            role: role,
-                            rating: rating,
-                            review: review,
-                            project: project,
-                            projectSlug: projectSlug,
-                            status: 'pending',
-                            likes: 0,
-                            reports: 0,
-                            flagged: false,
-                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                        })
-                        .then(() => {
-                            window.db.collection('users').add({
-                                name: name,
-                                email: email,
-                                type: 'review',
-                                date: firebase.firestore.FieldValue.serverTimestamp()
-                            }).catch(() => {});
-                            alertBox.className = 'form-status-alert success';
-                            alertBox.textContent = "Thank you! Your review has been submitted and is awaiting admin approval.";
-                            alertBox.style.display = 'block';
-                            form.reset();
-                            
-                            stars.forEach(s => s.classList.add('active'));
-                            ratingInput.value = 5;
-                            document.getElementById('submitReviewFormSection').scrollIntoView({ behavior: 'smooth' });
-                        })
-                        .catch((error) => {
-                            console.error("Reviews db write error: ", error);
-                            alertBox.className = 'form-status-alert error';
-                            alertBox.textContent = `Something went wrong. Please try again. (Error: ${error.message})`;
-                            alertBox.style.display = 'block';
-                        });
-                    } else {
-                        alertBox.className = 'form-status-alert error';
-                        alertBox.textContent = "Firebase database not loaded.";
-                        alertBox.style.display = 'block';
-                    }
-                });
-            }
-
-            // Report submission handler
-            const reportForm = document.getElementById('submitReportForm');
-            if (reportForm) {
-                reportForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const reviewId = document.getElementById('reportReviewId').value;
-                    const reason = document.getElementById('reportReason').value;
-                    const message = document.getElementById('reportMessage').value || '';
-
-                    if (window.db) {
-                        window.db.collection('reviewReports').add({
-                            reviewId: reviewId,
-                            reason: reason,
-                            message: message,
-                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                        })
-                        .then(() => {
-                            return window.db.collection('reviews').doc(reviewId).update({
-                                reports: firebase.firestore.FieldValue.increment(1),
-                                flagged: true,
-                                status: 'pending'
-                            });
-                        })
-                        .then(() => {
-                            alert("ðŸ“‹ Review report submitted. It is hidden from the public page until an admin rechecks it.");
-                            closeReportModal();
-                            reportForm.reset();
-                        })
-                        .catch(err => {
-                            console.error("Report write error: ", err);
-                            alert("Failed to submit report. Please try again.");
-                        });
-                    }
-                });
-            }
-
-            // Load More button click
-            const loadBtn = document.getElementById('loadMoreReviewsBtn');
-            if (loadBtn) {
-                loadBtn.addEventListener('click', () => {
-                    activePageLimit += limitPerPage;
-                    renderReviews();
-                });
-            }
-
-            // Sort Selector Listener
-            const sortSelect = document.getElementById('reviewSortSelect');
-            if (sortSelect) {
-                sortSelect.addEventListener('change', (e) => {
-                    activeSortRule = e.target.value;
-                    sortReviewsList();
-                    renderReviews();
-                });
-            }
-
-            // Fetch initial approved reviews from Firestore
-            setupReviewsQuery();
         });
-
-        // Setup Firestore Query Listener
-        function setupReviewsQuery() {
-            const wrapper = document.getElementById('reviewsWrapper');
-            if (window.db) {
-                window.db.collection('reviews')
-                    .where('status', '==', 'approved')
-                    .onSnapshot((snapshot) => {
-                        reviewsList = [];
-                        snapshot.forEach(doc => {
-                            const data = doc.data();
-                            if (data.flagged) return;
-                            reviewsList.push({
-                                id: doc.id,
-                                name: data.name,
-                                company: data.company || '',
-                                role: data.role || '',
-                                rating: data.rating,
-                                review: data.review,
-                                project: data.project || '',
-                                likes: data.likes || 0,
-                                reports: data.reports || 0,
-                                createdAt: data.createdAt ? data.createdAt.toDate() : new Date()
-                            });
-                        });
-
-                        // Calculate dynamic stats
-                        calculateStats();
-
-                        // Sort and render list
-                        sortReviewsList();
-                        renderReviews();
-                        if (window.location.hash) {
-                            const target = document.querySelector(window.location.hash);
-                            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }
-                    }, (error) => {
-                        console.error("Firestore reviews failed: ", error);
-                        if (wrapper) {
-                            wrapper.innerHTML = `<div class="no-leads-placeholder" style="color:#ff5555; grid-column:1/-1;">Error reading database reviews. Check Firestore rules.</div>`;
-                        }
-                    });
-            }
-        }
-
-        // Stats calculation
-        function calculateStats() {
-            const count = reviewsList.length;
-            document.getElementById('totalReviewsVal').textContent = count;
-
-            if (count > 0) {
-                const totalRating = reviewsList.reduce((acc, r) => acc + r.rating, 0);
-                const average = (totalRating / count).toFixed(1);
-                document.getElementById('avgRatingVal').textContent = average;
-
-                // Render average stars
-                const starsDiv = document.getElementById('avgRatingStars');
-                starsDiv.innerHTML = '';
-                const fullStars = Math.floor(average);
-                const halfStar = (average - fullStars) >= 0.4 ? 1 : 0;
-                const emptyStars = 5 - fullStars - halfStar;
-
-                for (let i = 0; i < fullStars; i++) {
-                    starsDiv.innerHTML += '<i class="fas fa-star"></i>';
-                }
-                if (halfStar) {
-                    starsDiv.innerHTML += '<i class="fas fa-star-half-stroke"></i>';
-                }
-                for (let i = 0; i < emptyStars; i++) {
-                    starsDiv.innerHTML += '<i class="far fa-star"></i>';
-                }
-            } else {
-                document.getElementById('avgRatingVal').textContent = '0.0';
-                document.getElementById('avgRatingStars').innerHTML = '<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
-            }
-        }
-
-        // Sorting
-        function sortReviewsList() {
-            sortedReviewsList = [...reviewsList];
-
-            if (activeSortRule === 'newest') {
-                sortedReviewsList.sort((a, b) => b.createdAt - a.createdAt);
-            } else if (activeSortRule === 'highest') {
-                sortedReviewsList.sort((a, b) => b.rating - a.rating || b.createdAt - a.createdAt);
-            } else if (activeSortRule === 'lowest') {
-                sortedReviewsList.sort((a, b) => a.rating - b.rating || b.createdAt - a.createdAt);
-            }
-        }
-
-        // Render Cards
-        function renderReviews() {
-            const wrapper = document.getElementById('reviewsWrapper');
-            const loadBtnWrapper = document.getElementById('loadMoreBtnWrapper');
-            if (!wrapper) return;
-
-            wrapper.innerHTML = '';
-
-            // Handle Pagination limits
-            const visibleReviews = sortedReviewsList.slice(0, activePageLimit);
-
-            visibleReviews.forEach(r => {
-                const initial = r.name.charAt(0).toUpperCase();
-                
-                // Form stars
-                let starsHTML = '';
-                for (let i = 1; i <= 5; i++) {
-                    if (i <= r.rating) {
-                        starsHTML += '<i class="fas fa-star"></i>';
-                    } else {
-                        starsHTML += '<i class="far fa-star"></i>';
-                    }
-                }
-
-                // Check localStorage to see if user has liked this review
-                const hasLiked = localStorage.getItem('liked_' + r.id) === 'true';
-                const likeClass = hasLiked ? 'liked' : '';
-
-                // Date formatting
-                const formattedDate = r.createdAt.toLocaleDateString('en-US', {
-                    year: 'numeric', month: 'short', day: 'numeric'
-                });
-
-                const companyRole = [r.role, r.company].filter(Boolean).join(', ');
-                const companyRoleLine = companyRole ? `<span class="role-company">${escapeHtml(companyRole)}</span>` : '';
-
-                const card = document.createElement('div');
-                card.id = `review-${r.id}`;
-                card.className = 'review-card';
-                card.innerHTML = `
-                    <div class="review-card-header">
-                        <div class="reviewer-avatar">${initial}</div>
-                        <div class="reviewer-info">
-                            <h3>${escapeHtml(r.name)}</h3>
-                            ${companyRoleLine}
-                        </div>
-                    </div>
-                    <div class="review-rating-row">
-                        <div class="card-stars">${starsHTML}</div>
-                        ${r.project ? `<span class="card-project-tag">${escapeHtml(r.project)}</span>` : ''}
-                    </div>
-                    <div class="review-card-body">
-                        <p>${escapeHtml(r.review)}</p>
-                    </div>
-                    <div class="review-card-footer">
-                        <span>${formattedDate}</span>
-                        <div class="review-actions-row">
-                            <button onclick="handleLike('${r.id}')" class="review-action-btn ${likeClass}" id="likeBtn_${r.id}">
-                                <i class="fa-solid fa-thumbs-up"></i> <span class="likes-count" id="likesVal_${r.id}">${r.likes}</span>
-                            </button>
-                            <button onclick="shareReview('${r.id}')" class="review-action-btn" title="Share Testimonial">
-                                <i class="fas fa-share-nodes"></i>
-                            </button>
-                            <button onclick="openReportModal('${r.id}')" class="review-action-btn" title="Report Abuse">
-                                <i class="fas fa-circle-exclamation"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-                wrapper.appendChild(card);
-            });
-
-            // Display Load More button if more reviews remain
-            if (sortedReviewsList.length > activePageLimit) {
-                loadBtnWrapper.style.display = 'block';
-            } else {
-                loadBtnWrapper.style.display = 'none';
-            }
-
-            if (sortedReviewsList.length === 0) {
-                wrapper.innerHTML = `
-                    <div class="no-leads-placeholder" style="grid-column: 1 / -1;">
-                        <i class="fas fa-message" style="font-size:2.2rem; color:#444; margin-bottom:10px; display:block;"></i>
-                        <span>No reviews yet. Be the first to share your experience below!</span>
-                    </div>
-                `;
-            }
-        }
-
-        // Like handling
-        function handleLike(reviewId) {
-            const hasLiked = localStorage.getItem('liked_' + reviewId) === 'true';
-            const likeBtn = document.getElementById(`likeBtn_${reviewId}`);
-            const likesCountEl = document.getElementById(`likesVal_${reviewId}`);
-
-            if (hasLiked) {
-                alert("ðŸ‘ You have already liked this client review!");
-                return;
-            }
-
-            if (window.db) {
-                // Update Firestore transaction-based increment safely
-                window.db.collection('reviews').doc(reviewId).update({
-                    likes: firebase.firestore.FieldValue.increment(1)
-                })
-                .then(() => {
-                    localStorage.setItem('liked_' + reviewId, 'true');
-                    if (likeBtn) likeBtn.classList.add('liked');
-                    if (likesCountEl) {
-                        const currentLikes = parseInt(likesCountEl.textContent);
-                        likesCountEl.textContent = currentLikes + 1;
-                    }
-                })
-                .catch(err => {
-                    console.error("Like increment failed:", err);
-                });
-            }
-        }
-
-        // Share Dialog
-        function shareReview(reviewId) {
-            const shareUrl = `${window.location.origin}/reviews#review-${reviewId}`;
-            const review = reviewsList.find(r => r.id === reviewId);
-            const shareData = {
-                title: review ? `${review.name} â€” SkyEagle Studio review` : 'SkyEagle Studio review',
-                text: review ? review.review : 'Client review',
-                url: shareUrl
-            };
-
-            if (navigator.share) {
-                navigator.share(shareData).catch(() => copyReviewLink(shareUrl));
-            } else {
-                copyReviewLink(shareUrl);
-            }
-        }
-
-        function copyReviewLink(shareUrl) {
-            navigator.clipboard.writeText(shareUrl).then(() => {
-                alert("ðŸ”— Link to this review copied to clipboard:\n" + shareUrl);
-            }).catch(() => {
-                window.prompt("Copy this review link:", shareUrl);
-            });
-        }
-
-        // Report Modal Controls
-        function openReportModal(reviewId) {
-            document.getElementById('reportReviewId').value = reviewId;
-            document.getElementById('reportReviewModal').classList.add('active');
-        }
-
-        function closeReportModal() {
-            document.getElementById('reportReviewModal').classList.remove('active');
-        }
-
-        function escapeHtml(text) {
-            const map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            };
-            return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
-        }
     </script>
 </body>
 </html>

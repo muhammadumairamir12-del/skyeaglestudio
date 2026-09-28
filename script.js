@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ===== CONTACT FORM & LEAD REDIRECTION =====
+    // ===== CONTACT FORM (Realtime Database via firebase-public.js) =====
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         // Auto-select type based on URL parameter
@@ -174,59 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 select.value = interest;
             }
         }
-
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Extract values
-            const name = document.getElementById('formName').value;
-            const email = document.getElementById('formEmail').value;
-            const phone = document.getElementById('formPhone').value;
-            const company = document.getElementById('formCompany').value || 'Not Specified';
-            const projectType = document.getElementById('formProjectType').value;
-            const budget = document.getElementById('formBudget').value;
-            const details = document.getElementById('formDescription').value;
-            
-            // Save lead to Firestore if database is available
-            if (window.db) {
-                window.db.collection("leads").add({
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    company: company,
-                    projectType: projectType,
-                    budget: budget,
-                    description: details,
-                    read: false,
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                }).then((docRef) => {
-                    console.log("Lead recorded in Firebase with ID:", docRef.id);
-                    return window.db.collection("users").add({
-                        name: name,
-                        email: email,
-                        phone: phone,
-                        company: company,
-                        type: "contact",
-                        date: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-                }).catch((error) => {
-                    console.error("Error recording lead in Firebase:", error);
-                });
-            } else {
-                console.warn("Firestore database not initialized. Lead was not saved locally.");
-            }
-            
-            // 1. Alert confirmation
-            alert(`🎉 Assalam-o-Alaikum ${name}!\n\nThank you for your scoping inquiry regarding: "${projectType}". Our developers will analyze your requirements and get back to you shortly.\n\nWe will now redirect you to WhatsApp to discuss details directly.`);
-            
-            // 2. Format WhatsApp Redirect Message
-            const whatsappText = `Assalam-o-Alaikum SkyEagle Studio!\n\nMy name is *${name}*.\nI am writing to discuss a *${projectType}* project.\n\n*Scoping Details:*\n- *Email:* ${email}\n- *Phone:* ${phone}\n- *Company:* ${company}\n- *Budget:* ${budget}\n- *Description:* ${details}`;
-            const whatsappUrl = `https://wa.me/923188791637?text=${encodeURIComponent(whatsappText)}`;
-            
-            // Open in new tab and reset form
-            window.open(whatsappUrl, '_blank');
-            contactForm.reset();
-        });
+        // Submit → Firebase RTDB "queries" is handled in firebase-public.js (no WhatsApp redirect).
     }
 
     // ===== DYNAMIC PORTFOLIO RENDERER =====

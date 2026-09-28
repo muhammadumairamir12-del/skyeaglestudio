@@ -721,67 +721,6 @@
     <script defer src="firebase-init.js"></script>
     <script defer src="script.js"></script>
 
-    <!-- Dynamic home reviews loader -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Render Latest 3 Approved Reviews
-            const homeReviews = document.getElementById('homeReviewsWrapper');
-            if (homeReviews && window.db) {
-                window.db.collection('reviews')
-                    .where('status', '==', 'approved')
-                    .orderBy('createdAt', 'desc')
-                    .limit(3)
-                    .get()
-                    .then(snapshot => {
-                        homeReviews.innerHTML = '';
-                        let count = 0;
-                        snapshot.forEach(doc => {
-                            const r = doc.data();
-                            if (r.flagged) return;
-                            if (count >= 3) return;
-                            const initial = r.name.charAt(0).toUpperCase();
-                            
-                            let stars = '';
-                            for (let i = 1; i <= 5; i++) {
-                                stars += i <= r.rating ? '<i class="fas fa-star" style="color:#ffd700; font-size:0.75rem; margin-right:2px;"></i>' : '<i class="far fa-star" style="color:#333; font-size:0.75rem; margin-right:2px;"></i>';
-                            }
-
-                            const companyRole = [r.role, r.company].filter(Boolean).join(', ');
-                            const companyLine = companyRole ? `<span style="font-size:0.75rem; color:#555;">${companyRole}</span>` : '';
-
-                            homeReviews.innerHTML += `
-                                <div class="review-card tilt-3d" style="background:rgba(10,10,10,0.4); border:1px solid #1a1a1a; border-radius:10px; padding:25px; text-align:left;">
-                                    <div style="display:flex; gap:12px; align-items:center; margin-bottom:15px;">
-                                        <div style="width:40px; height:40px; border-radius:50%; background:var(--primary); color:#000; display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:700; font-size:1rem; border:1px solid var(--primary);">${initial}</div>
-                                        <div style="display:flex; flex-direction:column;">
-                                            <h3 style="font-family:var(--font-heading); font-size:0.95rem; color:#fff; margin:0;">${r.name}</h3>
-                                            ${companyLine}
-                                        </div>
-                                    </div>
-                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                                        <div>${stars}</div>
-                                        ${r.project ? `<span style="background:rgba(0,240,255,0.05); border:1px solid rgba(0,240,255,0.1); color:var(--primary); font-size:0.65rem; padding:2px 6px; border-radius:4px; text-transform:uppercase;">${r.project}</span>` : ''}
-                                    </div>
-                                    <p style="color:#aaa; font-size:0.85rem; line-height:1.5; margin:0; min-height:60px;">"${r.review}"</p>
-                                </div>
-                            `;
-                            count++;
-                        });
-
-                        if (count === 0) {
-                            homeReviews.innerHTML = `
-                                <div style="text-align:center; grid-column:1/-1; padding:20px 0; color:#555; font-size:0.88rem;">
-                                    No approved reviews logged. Be the first to share your feedback!
-                                </div>
-                            `;
-                        }
-                    })
-                    .catch(err => {
-                        console.error("Home reviews query failed: ", err);
-                        homeReviews.innerHTML = `<div style="text-align:center; grid-column:1/-1; color:#ff5555; font-size:0.82rem;">Database query failed.</div>`;
-                    });
-            }
-        });
-    </script>
+    <script type="module" src="firebase-public.js"></script>
 </body>
 </html>
