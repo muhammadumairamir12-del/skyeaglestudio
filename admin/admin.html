@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Admin | Sky Eagle Studio</title>
+<title>Admin | SkyEagle Studio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
@@ -53,8 +53,8 @@ main{max-width:980px;margin:0 auto;padding:24px 16px 60px}
 
 <section id="login">
   <form class="box" id="loginForm">
-    <h1>Sky Eagle Studio</h1>
-    <p>Admin panel mein login karein.</p>
+    <h1>SkyEagle Studio</h1>
+    <p>Sign in to the admin panel.</p>
     <label for="em">Email</label><input id="em" type="email" autocomplete="username" required>
     <label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password" required>
     <button type="submit">Login</button>
@@ -63,13 +63,13 @@ main{max-width:980px;margin:0 auto;padding:24px 16px 60px}
 </section>
 
 <div id="app">
-  <header><b>Sky Eagle Studio Admin</b><div><span id="who"></span><button id="out">Logout</button></div></header>
+  <header><b>SkyEagle Studio Admin</b><div><span id="who"></span><button id="out">Logout</button></div></header>
   <main>
     <div class="stats">
-      <div class="stat"><b id="s1">0</b><small>Naye queries</small></div>
+      <div class="stat"><b id="s1">0</b><small>New queries</small></div>
       <div class="stat"><b id="s2">0</b><small>Total queries</small></div>
-      <div class="stat"><b id="s3">0</b><small>Approval ke muntazir reviews</small></div>
-      <div class="stat"><b id="s4">0</b><small>Website par live reviews</small></div>
+      <div class="stat"><b id="s3">0</b><small>Pending reviews</small></div>
+      <div class="stat"><b id="s4">0</b><small>Live reviews</small></div>
     </div>
     <div class="tabs" id="tabs">
       <button data-t="queries" class="on">Queries <span class="badge" id="b1" hidden></span></button>
@@ -109,7 +109,7 @@ const rows = o => Object.entries(o || {}).map(([id, v]) => ({ id, ...v })).sort(
 $("loginForm").addEventListener("submit", async e => {
   e.preventDefault(); $("err").textContent = "";
   try { await signInWithEmailAndPassword(auth, $("em").value.trim(), $("pw").value); }
-  catch { $("err").textContent = "Email ya password ghalat hai. Dobara koshish karein."; }
+  catch { $("err").textContent = "Incorrect email or password. Please try again."; }
 });
 $("out").onclick = () => signOut(auth);
 
@@ -121,7 +121,7 @@ onAuthStateChanged(auth, user => {
   $("who").textContent = user.email;
   for (const k in paths) {
     unsubs.push(onValue(ref(db, paths[k]), s => { data[k] = s.val() || {}; render(); },
-      () => toast("Data load nahi hua. Database rules check karein.")));
+      () => toast("Could not load data. Check database rules.")));
   }
 });
 
@@ -139,7 +139,10 @@ function render() {
   $("b1").hidden = !unread; $("b1").textContent = unread;
   $("b2").hidden = !p.length; $("b2").textContent = p.length;
   const list = tab === "queries" ? q : tab === "pending" ? p : a;
-  if (!list.length) { $("list").innerHTML = `<div class="empty">${tab === "queries" ? "Abhi koi query nahi aayi." : tab === "pending" ? "Approval ke liye koi review nahi hai." : "Abhi koi review live nahi hai."}</div>`; return; }
+  if (!list.length) {
+    $("list").innerHTML = `<div class="empty">${tab === "queries" ? "No queries yet." : tab === "pending" ? "No reviews waiting for approval." : "No live reviews yet."}</div>`;
+    return;
+  }
   $("list").innerHTML = list.map(tab === "queries" ? qCard : rCard).join("");
 }
 
@@ -150,9 +153,9 @@ const qCard = x => {
   <div class="meta">${x.email ? `<a href="mailto:${esc(x.email)}">${esc(x.email)}</a>` : ""}${x.phone ? `<span>${esc(x.phone)}</span>` : ""}${x.service ? `<span>Service: ${esc(x.service)}</span>` : ""}</div>
   <div class="msg">${esc(x.message)}</div>
   <div class="act">
-    ${num ? `<a href="https://wa.me/${num}" target="_blank" rel="noopener">WhatsApp par reply</a>` : ""}
-    ${x.email ? `<a href="mailto:${esc(x.email)}" style="background:var(--accent)">Email reply</a>` : ""}
-    ${x.read ? "" : `<button class="ghost" data-a="read" data-id="${x.id}">Read mark karein</button>`}
+    ${num ? `<a href="https://wa.me/${num}" target="_blank" rel="noopener">Reply on WhatsApp</a>` : ""}
+    ${x.email ? `<a href="mailto:${esc(x.email)}" style="background:var(--accent)">Reply by email</a>` : ""}
+    ${x.read ? "" : `<button class="ghost" data-a="read" data-id="${x.id}">Mark as read</button>`}
     <button class="bad" data-a="del-q" data-id="${x.id}">Delete</button>
   </div></div>`;
 };
@@ -162,8 +165,8 @@ const rCard = x => `<div class="item">
   <div class="stars">${"★".repeat(Math.min(5, +x.rating || 0))}${"☆".repeat(5 - Math.min(5, +x.rating || 0))}</div>
   <div class="msg" style="margin-top:8px">${esc(x.message)}</div>
   <div class="act">
-    ${tab === "pending" ? `<button class="ok" data-a="approve" data-id="${x.id}">Approve karein</button><button class="bad" data-a="reject" data-id="${x.id}">Reject</button>`
-      : `<button class="ghost" data-a="unpublish" data-id="${x.id}">Website se hatayein</button><button class="bad" data-a="del-r" data-id="${x.id}">Delete</button>`}
+    ${tab === "pending" ? `<button class="ok" data-a="approve" data-id="${x.id}">Approve</button><button class="bad" data-a="reject" data-id="${x.id}">Reject</button>`
+      : `<button class="ghost" data-a="unpublish" data-id="${x.id}">Remove from website</button><button class="bad" data-a="del-r" data-id="${x.id}">Delete</button>`}
   </div></div>`;
 
 $("list").onclick = async e => {
@@ -171,19 +174,19 @@ $("list").onclick = async e => {
   const id = b.dataset.id, act = b.dataset.a;
   try {
     if (act === "read") await update(ref(db, `queries/${id}`), { read: true });
-    else if (act === "del-q" && confirm("Ye query delete kar dein?")) await remove(ref(db, `queries/${id}`));
+    else if (act === "del-q" && confirm("Delete this query?")) await remove(ref(db, `queries/${id}`));
     else if (act === "approve") {
       const { id: _i, ...r } = data.pending[id] ? { id, ...data.pending[id] } : {};
       await set(ref(db, `reviews_approved/${id}`), { ...r, approvedAt: Date.now() });
-      await remove(ref(db, `reviews_pending/${id}`)); toast("Review website par live ho gaya");
+      await remove(ref(db, `reviews_pending/${id}`)); toast("Review is now live on the website");
     }
-    else if (act === "reject" && confirm("Ye review reject kar dein?")) await remove(ref(db, `reviews_pending/${id}`));
+    else if (act === "reject" && confirm("Reject this review?")) await remove(ref(db, `reviews_pending/${id}`));
     else if (act === "unpublish") {
       await set(ref(db, `reviews_pending/${id}`), data.approved[id]);
-      await remove(ref(db, `reviews_approved/${id}`)); toast("Review website se hata diya");
+      await remove(ref(db, `reviews_approved/${id}`)); toast("Review removed from the website");
     }
-    else if (act === "del-r" && confirm("Ye review hamesha ke liye delete kar dein?")) await remove(ref(db, `reviews_approved/${id}`));
-  } catch { toast("Action nahi ho saka. Database rules check karein."); }
+    else if (act === "del-r" && confirm("Permanently delete this review?")) await remove(ref(db, `reviews_approved/${id}`));
+  } catch { toast("Action failed. Check database rules."); }
 };
 </script>
 </body>

@@ -291,6 +291,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return wrap;
     };
 
+    window.caseStudyUrl = function(slug) {
+        if (!slug) return '/projects';
+        return '/projects/case-study?slug=' + encodeURIComponent(slug);
+    };
+
     window.appendProjectActions = function(container, project, options) {
         options = options || {};
         const actions = document.createElement('div');
@@ -309,10 +314,11 @@ document.addEventListener('DOMContentLoaded', () => {
             actions.appendChild(live);
         }
 
-        if (slug && options.showCaseStudy !== false) {
+        // Journey page already shows the full story inline — do not link to a separate case study page.
+        if (slug && options.showCaseStudy !== false && options.mode !== 'journey') {
             const study = document.createElement('a');
             study.className = 'btn btn-secondary';
-            study.href = '/projects/' + slug;
+            study.href = window.caseStudyUrl(slug);
             study.innerHTML = '<span>Case Study</span>';
             actions.appendChild(study);
         }
@@ -418,7 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: project.name || project.clientName,
             slug: project.slug || project.projectSlug,
             liveUrl: project.liveUrl
-        }, { showCaseStudy: mode !== 'journey' ? true : !!project.slug });
+        }, { showCaseStudy: mode !== 'journey', mode: mode });
 
         item.appendChild(media);
         item.appendChild(copy);
@@ -474,7 +480,8 @@ document.addEventListener('DOMContentLoaded', () => {
             story.dataset.enhanced = 'true';
 
             const hasCasePage = !!(linked || ((window.projectsData || []).some((p) => p.slug === slug)));
-            window.appendProjectActions(story, { name: name, slug: slug, liveUrl: liveUrl }, { showCaseStudy: hasCasePage });
+            // Journey stories already include full detail on this page — no separate Case Study link.
+            window.appendProjectActions(story, { name: name, slug: slug, liveUrl: liveUrl }, { showCaseStudy: false, mode: 'journey' });
         });
     };
 
@@ -631,7 +638,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnsDiv.appendChild(liveLink);
         
         const caseLink = document.createElement('a');
-        caseLink.href = `/projects/${project.slug}`;
+        caseLink.href = window.caseStudyUrl(project.slug);
         caseLink.className = 'btn btn-secondary';
         caseLink.textContent = 'Case Study';
         btnsDiv.appendChild(caseLink);

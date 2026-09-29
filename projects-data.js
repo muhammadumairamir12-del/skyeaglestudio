@@ -164,7 +164,7 @@ window.projectsData = [
     industry: "Healthcare Software",
     type: "Clinic Software / Desktop",
     description: "Custom clinic software for Zeeshan Dental Clinic — patient records, prescriptions, printable PDFs, letterheads, and reception workflows for Dr. Asad Zeeshan.",
-    technologies: ["Clinic software", "Printing", "Automation"],
+    technologies: ["Flutter", "Clinic software", "Printing", "Automation", "Claude Code"],
     liveUrl: "",
     imageUrl: "images/zeeshan-dental-prescription.jpg",
     imageUrl2: "images/zeeshan-dental-print.jpg",
@@ -173,9 +173,9 @@ window.projectsData = [
       "images/zeeshan-dental-print.jpg"
     ],
     clientName: "Dr. Asad Zeeshan",
-    challenge: "Dr. Asad Zeeshan in Peer Mahal needed clinic management software. A July Meta ad lead that only converted in September after persistent follow-up.",
-    solution: "Quoted, then met in Multan on Sept 11 for a 3-hour requirements session. Building a full clinic app with printing, custom layouts, and automation. Print layout is the last remaining fix.",
-    outcome: "In progress — 95% complete as of Sept 21. Received 15,000 PKR (5k + 10k). 20,000 PKR pending.",
+    challenge: "Dr. Asad Zeeshan in Peer Mahal needed clinic management software. A July Meta ad lead that only converted in September after persistent follow-up. The build started the same night we first aligned on scope.",
+    solution: "Started the first build overnight using Claude Code with the latest Fable 5.1 model (~$70 in AI tokens). Met in Multan / over a restaurant sit-down after requirements — quoted 30,000–35,000 PKR and he agreed. Shipped a full clinic app with printing, custom layouts, Flutter widgets, and automation. Still iterating daily backups while chasing a printer margin bug that only shows on his machine.",
+    outcome: "In progress. Soft agreed range was 30k–35k PKR. Received 15,000 PKR so far (5k advance + 10k later); about 20–25k PKR still pending. One open issue remains: prints look correct on my side (PDF + physical), but on Dr. Zeeshan’s printer the margins are still wrong despite Flutter widget tweaks and daily backups.",
     price: "35,000 PKR",
     category: "Software"
   },

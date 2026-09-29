@@ -1,9 +1,16 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/projects/:slug((?!case-study$).*)",
+      "destination": "/projects/case-study?slug=:slug",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
-      "source": "/projects/:slug",
+      "source": "/projects/case-study",
       "destination": "/projects/case-study.html"
     }
   ],

@@ -346,7 +346,7 @@
 
             const pageTitle = `${project.name} | SkyEagle Studio Case Study`;
             const pageDesc = project.description || `Case study: ${project.name} â€” ${project.industry || 'custom software'} by SkyEagle Studio.`;
-            const pageUrl = `https://skyeaglestudio.com/projects/${project.slug}`;
+            const pageUrl = `https://skyeaglestudio.com/projects/case-study?slug=${encodeURIComponent(project.slug)}`;
 
             document.getElementById('metaTitle').textContent = pageTitle;
             document.getElementById('metaDesc').setAttribute('content', pageDesc);
