@@ -17,8 +17,7 @@ window.projectsData = [
     clientName: "Al-Noor Solar Energy",
     challenge: "A Multan solar company needed a frontend + backend website with a product catalog and daily-updatable pricing — not a generic demo.",
     solution: "Met in person after Jumu'ah, matched 2–3 reference sites, and shipped alnoorsolarenergy.com in 3–4 days with HTML, CSS, JS, Next.js, and Firebase. Also handled domain and hosting setup. Completed post-launch change requests.",
-    outcome: "Second completed project. Payment received 5–6 days after launch. Live at alnoorsolarenergy.com.",
-    price: "55,000 PKR",
+    outcome: "Second completed project. Live at alnoorsolarenergy.com with post-launch support.",
     category: "Websites"
   },
   {
@@ -38,8 +37,7 @@ window.projectsData = [
     clientName: "ZM Solar Electric",
     challenge: "A solar company needed a frontend + backend website. After a messy scheduling chain, we aligned on a video call on April 14. Mid-project, the owner's developer cousin pushed beyond scope.",
     solution: "Quoted from prior solar experience, registered zmsolarelectric.com, shipped the site, then handed files, server access, and the domain to the owner's cousin on the owner's instruction.",
-    outcome: "Full 74,000 PKR paid (44k advance + 35k remaining). Only client where the relationship ended after a single project.",
-    price: "74,000 PKR",
+    outcome: "Delivered and fully handed over. Live at zmsolarelectric.com. The only engagement that ended after a single project.",
     category: "Websites"
   },
   {
@@ -58,9 +56,8 @@ window.projectsData = [
     ],
     clientName: "Bin Zareen Solar",
     challenge: "An Islamabad solar company that went cold in March came back in April and needed a live solar website with catalog/data storage — not another delayed conversation.",
-    solution: "Settled at 45,000 PKR. Bought domain/hosting from a 20k upfront while on-site in Lahore, then finished the frontend in 2–3 days after returning home. Firebase backend/data-storage still being resolved.",
-    outcome: "Live at binzareen.com. 40,000 PKR received, 5,000 PKR pending. Product-facing backend not launched by the client yet; still in touch.",
-    price: "45,000 PKR",
+    solution: "Bought domain/hosting while on-site in Lahore, then finished the frontend in 2–3 days after returning home. Firebase backend/data-storage still being resolved.",
+    outcome: "Live at binzareen.com. Product-facing backend not launched by the client yet; relationship ongoing.",
     category: "Websites"
   },
   {
@@ -80,8 +77,7 @@ window.projectsData = [
     clientName: "Al-Fazal Medical & Dental Hospital",
     challenge: "Needed a professional hospital website, then a self-serve backend, then software for a 60–70 patient/day clinic on Excel — then a new receptionist after Waqas left and the system fell out of daily use.",
     solution: "Phase 1: custom frontend. Phase 2: backend, appointments, WhatsApp, admin panel. Phase 3: on-site Flutter CRM. Phase 4: second Lahore trip — ran hiring (Meta ad), interviewed with Dr. Yasir's wife, trained the new receptionist 5–6 days, and kept remote daily support.",
-    outcome: "Strongest ongoing relationship. 27k + 40k + 70k + 15k. Software, hiring, training, and ongoing support from one cold call.",
-    price: "152,000 PKR",
+    outcome: "Strongest ongoing relationship — website, CRM software, hiring support, training, and ongoing collaboration from one cold call.",
     category: "Healthcare"
   },
   {
@@ -102,7 +98,6 @@ window.projectsData = [
     challenge: "Needed a real SaaS marketplace to own — not just client work — connecting verified workers with jobs across cities.",
     solution: "Built doorskill.com as a self-funded local service marketplace with city maps, worker discovery, job posting, and a modern React/Next.js stack.",
     outcome: "Live product. First owned SaaS platform — funds and focus continue to grow it alongside client work.",
-    price: "Own product",
     category: "Websites"
   },
   {
@@ -122,8 +117,7 @@ window.projectsData = [
     clientName: "Best Hair Lahore",
     challenge: "A Lahore hair transplant clinic thought they needed Meta ads. After a wasted software trip to another lead, I pitched them a website for long-term leads instead of short-term campaigns.",
     solution: "Bought the domain myself, built besthairlahore.com with a strong SEO focus (100% SEO score), and covered hosting out of pocket. Still in touch.",
-    outcome: "Live and performing. Only 4,000 PKR received (domain cost). Hosting and the actual build unpaid so far. Relationship ongoing.",
-    price: "4,000 PKR",
+    outcome: "Live and performing with a strong SEO foundation. Relationship ongoing.",
     category: "Websites"
   },
   {
@@ -152,10 +146,9 @@ window.projectsData = [
       "images/al-fazal-crm-quick-actions.jpg"
     ],
     clientName: "Al-Fazal Hospital",
-    challenge: "A 60–70 patient/day clinic was running on Excel. After the website phases, Dr. Yasir needed desk software that reception could use every day — then the trained receptionist left and the system went unused.",
-    solution: "Built XPro on-site in Flutter/Next.js with patient records, tokens, appointments, billing, and lab orders. Later returned to Lahore to hire and train a new receptionist and keep remote daily support.",
-    outcome: "Live CRM in daily clinic use. Part of the ongoing Al-Fazal relationship (70k software phase + 15k support).",
-    price: "70,000 PKR",
+    challenge: "A 60–70 patient/day clinic was running on Excel. After the website phases, Dr. Yasir needed desk software that reception could use every day — then staff changes put adoption at risk.",
+    solution: "Built XPro on-site with patient records, tokens, appointments, billing, and lab orders. Later returned to Lahore to hire and train a new receptionist and keep remote daily support.",
+    outcome: "Live CRM in daily clinic use — part of the ongoing Al-Fazal relationship.",
     category: "Software"
   },
   {
@@ -173,10 +166,9 @@ window.projectsData = [
       "images/zeeshan-dental-print.jpg"
     ],
     clientName: "Dr. Asad Zeeshan",
-    challenge: "Dr. Asad Zeeshan in Peer Mahal needed clinic management software. A July Meta ad lead that only converted in September after persistent follow-up. The build started the same night we first aligned on scope.",
-    solution: "Started the first build overnight using Claude Code with the latest Fable 5.1 model (~$70 in AI tokens). Met in Multan / over a restaurant sit-down after requirements — quoted 30,000–35,000 PKR and he agreed. Shipped a full clinic app with printing, custom layouts, Flutter widgets, and automation. Still iterating daily backups while chasing a printer margin bug that only shows on his machine.",
-    outcome: "In progress. Soft agreed range was 30k–35k PKR. Received 15,000 PKR so far (5k advance + 10k later); about 20–25k PKR still pending. One open issue remains: prints look correct on my side (PDF + physical), but on Dr. Zeeshan’s printer the margins are still wrong despite Flutter widget tweaks and daily backups.",
-    price: "35,000 PKR",
+    challenge: "Dr. Asad Zeeshan in Peer Mahal needed custom clinic management software with prescriptions, letterheads, and reliable printing.",
+    solution: "Built a Flutter clinic app with custom layouts, automation, and printing workflows. Continuing daily backups while resolving a printer-margin issue that only appears on the clinic's machine.",
+    outcome: "Nearly complete. Core workflows are in testing; print margin calibration on the client printer is the remaining blocker.",
     category: "Software"
   },
   {

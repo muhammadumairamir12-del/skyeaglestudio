@@ -384,10 +384,9 @@
                 document.getElementById('caseClientRow').style.display = 'flex';
                 document.getElementById('caseClient').textContent = project.clientName;
             }
-            if (project.price) {
-                document.getElementById('casePriceRow').style.display = 'flex';
-                document.getElementById('casePrice').textContent = project.price;
-            }
+            // Public case studies never show project prices / investment amounts.
+            const priceRow = document.getElementById('casePriceRow');
+            if (priceRow) priceRow.style.display = 'none';
 
             const techContainer = document.getElementById('caseTechTags');
             techContainer.innerHTML = '';

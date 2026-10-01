@@ -377,28 +377,39 @@ document.addEventListener('DOMContentLoaded', () => {
         const storyProblem = project.problem || project.challenge || '';
         const storySolution = project.solution || '';
         const storyOutcome = project.outcome || '';
-        const hasStory = !!(storyProblem || storySolution || storyOutcome || project.price);
+        const hasStory = !!(storyProblem || storySolution || storyOutcome);
 
         if (mode === 'journey' || (mode === 'portfolio' && hasStory && (storyProblem || storySolution))) {
             const fields = [
-                ['Problem', storyProblem],
-                ['Solution built', storySolution],
+                ['Challenge', storyProblem],
+                ['What I built', storySolution],
                 ['Outcome', storyOutcome]
             ];
             fields.forEach(([label, value]) => {
                 if (!value) return;
                 const field = document.createElement('div');
                 field.className = 'journey-card-field';
-                field.innerHTML = '<span class="journey-field-label">' + label + '</span>';
+                const lab = document.createElement('span');
+                lab.className = 'journey-field-label';
+                lab.textContent = label;
                 const p = document.createElement('p');
                 p.textContent = value;
+                field.appendChild(lab);
                 field.appendChild(p);
                 copy.appendChild(field);
             });
-            if (project.price) {
+            if (mode === 'journey' && project.price) {
                 const price = document.createElement('p');
                 price.className = 'journey-price';
-                price.textContent = project.price;
+                const priceLabel = document.createElement('span');
+                priceLabel.className = 'journey-field-label';
+                priceLabel.textContent = 'Project value';
+                const priceVal = document.createElement('span');
+                priceVal.className = 'journey-price-value';
+                priceVal.textContent = project.price;
+                price.appendChild(priceLabel);
+                price.appendChild(document.createElement('br'));
+                price.appendChild(priceVal);
                 copy.appendChild(price);
             }
         } else if (project.description) {
