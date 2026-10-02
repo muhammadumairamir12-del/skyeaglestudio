@@ -3,7 +3,8 @@
     "queries": {
       ".read": "auth != null",
       "$queryId": {
-        ".write": "auth != null || (!data.exists() && newData.hasChildren(['name', 'message', 'createdAt', 'read']) && newData.child('name').isString() && newData.child('message').isString() && newData.child('createdAt').isNumber() && newData.child('read').val() === false)"
+        ".write": "auth != null || (!data.exists() && newData.hasChildren(['name', 'message', 'createdAt', 'read']) && newData.child('name').isString() && newData.child('name').val().length > 0 && newData.child('message').isString() && newData.child('message').val().length > 0 && newData.child('createdAt').isNumber() && newData.child('read').val() === false)",
+        ".validate": "newData.hasChildren(['name', 'message', 'createdAt', 'read'])"
       }
     },
     "reviews_pending": {

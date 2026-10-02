@@ -35,7 +35,7 @@ function isHoneypotFilled(form) {
 }
 
 function isValidEmail(email) {
-  if (!email) return true;
+  if (!email) return false;
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
@@ -43,6 +43,7 @@ function setFormStatus(el, type, text) {
   if (!el) return;
   el.textContent = text;
   el.className = "form-status-alert " + (type || "");
+  el.setAttribute("role", "alert");
   el.style.display = text ? "block" : "none";
   if (type === "success") {
     el.style.color = "#15803d";
@@ -52,12 +53,19 @@ function setFormStatus(el, type, text) {
     el.style.color = "#ff6b6b";
     el.style.background = "rgba(255, 80, 80, 0.1)";
     el.style.border = "1px solid rgba(255, 80, 80, 0.3)";
+  } else {
+    el.style.color = "";
+    el.style.background = "";
+    el.style.border = "";
   }
   el.style.padding = text ? "12px 14px" : "";
   el.style.borderRadius = "8px";
   el.style.marginBottom = text ? "16px" : "";
   el.style.fontSize = "0.9rem";
   el.style.lineHeight = "1.5";
+  if (text) {
+    try { el.scrollIntoView({ behavior: "smooth", block: "nearest" }); } catch (_) { /* ignore */ }
+  }
 }
 
 function ensureStatusBox(form) {
@@ -92,12 +100,38 @@ function getSubmitButton(form) {
 
 function setSubmitting(btn, busy) {
   if (!btn) return;
-  btn.disabled = !!busy;
-  btn.style.opacity = busy ? "0.7" : "";
-  btn.style.pointerEvents = busy ? "none" : "";
+  if (busy) {
+    btn.dataset.prevLabel = btn.innerHTML;
+    btn.disabled = true;
+    btn.style.opacity = "0.7";
+    btn.style.pointerEvents = "none";
+    const span = btn.querySelector("span");
+    if (span) span.textContent = "Sending…";
+    else btn.textContent = "Sending…";
+  } else {
+    btn.disabled = false;
+    btn.style.opacity = "";
+    btn.style.pointerEvents = "";
+    if (btn.dataset.prevLabel) {
+      btn.innerHTML = btn.dataset.prevLabel;
+      delete btn.dataset.prevLabel;
+    }
+  }
 }
 
-/* ---------- Contact form → queries ---------- */
+function friendlyFirebaseError(err) {
+  const code = (err && (err.code || err.message)) || "";
+  console.error("Firebase form error:", code, err);
+  if (/PERMISSION_DENIED|permission-denied/i.test(String(code))) {
+    return "Inquiry could not be saved (permission denied). Please try WhatsApp or email while we fix database rules.";
+  }
+  if (/unavailable|network|Failed to fetch|offline/i.test(String(code))) {
+    return "Network error — please check your connection and try again.";
+  }
+  return "Sorry, we could not send your inquiry. Please try again or use WhatsApp.";
+}
+
+/* ---------- Contact form → RTDB path "queries" ---------- */
 function initContactForm() {
   const form = $("contactForm");
   if (!form || form.dataset.rtdbBound === "true") return;
@@ -112,51 +146,77 @@ function initContactForm() {
     const name = ($("formName") && $("formName").value || "").trim();
     const email = ($("formEmail") && $("formEmail").value || "").trim();
     const phone = ($("formPhone") && $("formPhone").value || "").trim();
+    const company = ($("formCompany") && $("formCompany").value || "").trim();
     const service = ($("formProjectType") && $("formProjectType").value || "").trim();
-    const message = ($("formDescription") && $("formDescription").value || "").trim();
+    const budget = ($("formBudget") && $("formBudget").value || "").trim();
+    const details = ($("formDescription") && $("formDescription").value || "").trim();
     const btn = getSubmitButton(form);
 
     setFormStatus(status, "", "");
 
     if (isHoneypotFilled(form)) {
-      setFormStatus(status, "success", "Thank you! Your message has been sent. We will contact you soon.");
+      setFormStatus(status, "success", "Inquiry sent! We will contact you soon.");
       form.reset();
       return;
     }
 
-    if (!name || !message) {
-      setFormStatus(status, "error", "Please enter your name and message.");
+    // Explicit validation with UI feedback (not silent HTML5-only)
+    if (!name) {
+      setFormStatus(status, "error", "Please enter your full name.");
       return;
     }
-    if (email && !isValidEmail(email)) {
+    if (!email || !isValidEmail(email)) {
       setFormStatus(status, "error", "Please enter a valid email address.");
       return;
     }
+    if (!phone) {
+      setFormStatus(status, "error", "Please enter your WhatsApp / phone number.");
+      return;
+    }
+    if (!service) {
+      setFormStatus(status, "error", "Please select a project type.");
+      return;
+    }
+    if (!budget) {
+      setFormStatus(status, "error", "Please select a budget range.");
+      return;
+    }
+    if (!details) {
+      setFormStatus(status, "error", "Please describe your project details & scope.");
+      return;
+    }
     if (isRateLimited(RATE_KEYS.contact)) {
-      setFormStatus(status, "error", "Please wait a few seconds before sending another message.");
+      setFormStatus(status, "error", "Please wait a few seconds before sending another inquiry.");
       return;
     }
 
+    const messageParts = [];
+    if (company) messageParts.push("Company: " + company);
+    if (budget) messageParts.push("Budget: " + budget);
+    messageParts.push(details);
+    const message = messageParts.join("\n");
+
+    // Shape required by database.rules.json public create on /queries/$id
     const payload = {
       name,
       email,
       phone,
       message,
       read: false,
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      service
     };
-    if (service) payload.service = service;
 
     setSubmitting(btn, true);
     try {
-      await push(ref(db, "queries"), payload);
+      const result = await push(ref(db, "queries"), payload);
+      console.log("Contact inquiry saved to RTDB queries/", result && result.key);
       markSubmitted(RATE_KEYS.contact);
-      setFormStatus(status, "success", "Thank you! Your message has been sent. We will contact you soon.");
+      setFormStatus(status, "success", "Inquiry sent! We will contact you soon.");
       form.reset();
       ensureHoneypot(form);
     } catch (err) {
-      console.error("Contact query save failed:", err);
-      setFormStatus(status, "error", "Sorry, we could not send your message. Please try again or use WhatsApp.");
+      setFormStatus(status, "error", friendlyFirebaseError(err));
     } finally {
       setSubmitting(btn, false);
     }
@@ -219,8 +279,7 @@ function initReviewForm() {
       const section = $("submitReviewFormSection");
       if (section) section.scrollIntoView({ behavior: "smooth", block: "center" });
     } catch (err) {
-      console.error("Review save failed:", err);
-      setFormStatus(status, "error", "Sorry, we could not submit your review. Please try again.");
+      setFormStatus(status, "error", friendlyFirebaseError(err));
     } finally {
       setSubmitting(btn, false);
     }
@@ -352,7 +411,7 @@ function initApprovedReviewsList() {
   onValue(ref(db, "reviews_approved"), (snap) => {
     paint(rowsFromSnapshot(snap.val()));
   }, (err) => {
-    console.error("Approved reviews load failed:", err);
+    console.error("Approved reviews load failed:", err && err.code, err);
     wrapper.textContent = "";
     emptyState(wrapper, "Reviews could not be loaded right now.");
   });
@@ -378,7 +437,7 @@ function initHomeReviews() {
     }
     list.forEach((r) => renderReviewCard(home, r, { home: true }));
   }, (err) => {
-    console.error("Home reviews load failed:", err);
+    console.error("Home reviews load failed:", err && err.code, err);
     home.textContent = "";
     emptyState(home, "Reviews could not be loaded right now.");
   });

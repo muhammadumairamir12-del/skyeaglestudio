@@ -240,6 +240,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 img.setAttribute('width', '1200');
                 img.setAttribute('height', '750');
             }
+            img.onerror = function () {
+                // If absolute path fails, retry relative once
+                if (this.dataset.retried === '1') {
+                    this.style.display = 'none';
+                    return;
+                }
+                this.dataset.retried = '1';
+                const raw = String(src || '').replace(/^\//, '');
+                this.src = raw;
+            };
             wrap.appendChild(img);
         });
 
@@ -398,20 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 field.appendChild(p);
                 copy.appendChild(field);
             });
-            if (mode === 'journey' && project.price) {
-                const price = document.createElement('p');
-                price.className = 'journey-price';
-                const priceLabel = document.createElement('span');
-                priceLabel.className = 'journey-field-label';
-                priceLabel.textContent = 'Project value';
-                const priceVal = document.createElement('span');
-                priceVal.className = 'journey-price-value';
-                priceVal.textContent = project.price;
-                price.appendChild(priceLabel);
-                price.appendChild(document.createElement('br'));
-                price.appendChild(priceVal);
-                copy.appendChild(price);
-            }
+            // Journey page: do not render price / project-value figures
         } else if (project.description) {
             const desc = document.createElement('p');
             desc.className = 'portfolio-desc';
