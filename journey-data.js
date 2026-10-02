@@ -1,7 +1,6 @@
 /**
  * Client case studies for /journey
- * Prices = professional USD project values (display-only).
- * Order matches assigned values by complexity.
+ * No project prices / PKR / USD values are stored or rendered.
  */
 window.journeyCaseStudies = [
   {
@@ -14,8 +13,6 @@ window.journeyCaseStudies = [
     solution: "Built besthairlahore.com with a strong SEO foundation and kept supporting the live site.",
     techStack: ["HTML5", "CSS3", "JavaScript", "SEO"],
     outcome: "Live and ranking-ready. Relationship ongoing.",
-    price: "$1,000",
-    priceWhy: "Marketing site + SEO",
     liveUrl: "https://www.besthairlahore.com/",
     imageUrl: "images/best-hair-lahore-home.jpg",
     imageUrl2: "images/best-hair-lahore-treatments.jpg",
@@ -35,8 +32,6 @@ window.journeyCaseStudies = [
     solution: "Registered the domain, shipped the site, then transferred files, server access, and domain ownership on the client’s instruction.",
     techStack: ["HTML", "CSS", "JavaScript", "Firebase"],
     outcome: "Delivered and fully handed over. Live at zmsolarelectric.com.",
-    price: "$1,500",
-    priceWhy: "Business site + Firebase + handoff",
     liveUrl: "https://zmsolarelectric.com/",
     imageUrl: "images/zm-solar-electric-home.jpg",
     imageUrl2: "images/zm-solar-electric-products.jpg",
@@ -56,8 +51,6 @@ window.journeyCaseStudies = [
     solution: "Shipped a full frontend + backend site with Next.js and Firebase, including domain/hosting setup and post-launch change requests.",
     techStack: ["HTML", "CSS", "JavaScript", "Next.js", "Firebase"],
     outcome: "Live at alnoorsolarenergy.com. Second completed client project with a clean handoff and follow-up support.",
-    price: "$2,000",
-    priceWhy: "Next.js + catalog + backend",
     liveUrl: "https://al-noorsolarenergy.com/",
     imageUrl: "images/al-noor-solar-home.jpg",
     imageUrl2: "images/al-noor-solar-products.jpg",
@@ -77,8 +70,6 @@ window.journeyCaseStudies = [
     solution: "Bought domain/hosting, shipped the frontend quickly, and continued backend/Firebase work for product-facing features.",
     techStack: ["HTML", "CSS", "JavaScript", "Firebase"],
     outcome: "Live at binzareen.com. Relationship ongoing while backend launch finishes on the client side.",
-    price: "$2,500",
-    priceWhy: "Site + calculator + Firebase backend",
     liveUrl: "https://binzareen.com/",
     imageUrl: "images/bin-zareen-home.jpg",
     imageUrl2: "images/bin-zareen-calculator.jpg",
@@ -98,8 +89,6 @@ window.journeyCaseStudies = [
     solution: "Built XPro clinic CRM with patient workflows, appointments, billing, and reception tools, plus training and remote support after staff changes.",
     techStack: ["Next.js", "TypeScript", "Firebase", "Tailwind CSS"],
     outcome: "Live CRM in daily clinic use as part of the ongoing Al-Fazal relationship.",
-    price: "$3,500",
-    priceWhy: "Clinic CRM, workflows, admin",
     liveUrl: "https://dental-clinics-software.vercel.app/",
     imageUrl: "images/al-fazal-crm-dashboard.jpg",
     imageUrl2: "images/al-fazal-crm-quick-actions.jpg",
@@ -119,8 +108,6 @@ window.journeyCaseStudies = [
     solution: "Built a Flutter clinic app with custom layouts, automation, and printing workflows. Continuing daily backups while resolving a printer-margin issue that only appears on the clinic’s machine.",
     techStack: ["Flutter", "Clinic software", "Printing", "Automation"],
     outcome: "Nearly complete. Core workflows are live in testing; print margin calibration on the client printer is the remaining blocker.",
-    price: "$4,000",
-    priceWhy: "Flutter clinic app + printing/automation",
     liveUrl: "",
     imageUrl: "images/zeeshan-dental-prescription.jpg",
     imageUrl2: "images/zeeshan-dental-print.jpg",
@@ -140,8 +127,6 @@ window.journeyCaseStudies = [
     solution: "Delivered in phases: custom hospital website, appointments + WhatsApp + admin backend, on-site Flutter clinic CRM, then hiring support and receptionist training with ongoing remote help.",
     techStack: ["HTML5", "CSS3", "JavaScript", "Node.js", "Flutter", "Firebase", "WhatsApp"],
     outcome: "Longest ongoing partnership — website, software, operations support, and continued collaboration from one cold call.",
-    price: "$5,000+",
-    priceWhy: "Website + backend + CRM + ops support",
     liveUrl: "https://www.al-fazalhospital.com/",
     imageUrl: "images/al-fazal-hospital-home.jpg",
     imageUrl2: "images/al-fazal-hospital-before-after.jpg",
@@ -161,8 +146,6 @@ window.journeyCaseStudies = [
     solution: "Built doorskill.com as a self-funded local service marketplace with city maps, worker discovery, job posting, and a modern React/Next.js stack.",
     techStack: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
     outcome: "Live product. First owned SaaS platform running alongside client work.",
-    price: "$5,000+",
-    priceWhy: "Owned SaaS marketplace",
     liveUrl: "https://www.doorskill.com/",
     imageUrl: "images/doorskill-home.jpg",
     imageUrl2: "images/doorskill-map.jpg",
@@ -197,7 +180,8 @@ window.renderJourneyCaseStudies = function (containerId) {
       problem: study.problem,
       solution: study.solution,
       outcome: study.outcome,
-      price: study.price || '',
+      price: '',
+      priceWhy: '',
       techStack: study.techStack,
       technologies: study.techStack,
       liveUrl: study.liveUrl || (linked && linked.liveUrl) || '',
