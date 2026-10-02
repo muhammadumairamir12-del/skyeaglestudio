@@ -172,14 +172,19 @@ window.renderJourneyCaseStudies = function (containerId) {
     const imageUrls = (study.imageUrls && study.imageUrls.length)
       ? study.imageUrls.slice()
       : ((linked && linked.imageUrls) || []);
-    const project = Object.assign({}, linked || {}, {
+    const scrub = typeof window.stripProjectPrices === 'function'
+      ? window.stripProjectPrices
+      : function (t) { return t || ''; };
+    // Journey copy always comes from journey-data.js — never Firestore price/PKR fields
+    const project = {
       name: study.clientName,
       clientName: study.clientName,
       industry: study.industry,
       type: study.year ? study.year + ' · Client work' : 'Client work',
-      problem: study.problem,
-      solution: study.solution,
-      outcome: study.outcome,
+      problem: scrub(study.problem),
+      challenge: scrub(study.problem),
+      solution: scrub(study.solution),
+      outcome: scrub(study.outcome),
       price: '',
       priceWhy: '',
       techStack: study.techStack,
@@ -189,8 +194,9 @@ window.renderJourneyCaseStudies = function (containerId) {
       projectSlug: (linked && linked.slug) || study.projectSlug || '',
       imageUrl: study.imageUrl || (linked && linked.imageUrl) || '',
       imageUrl2: study.imageUrl2 || (linked && linked.imageUrl2) || '',
-      imageUrls: imageUrls
-    });
+      imageUrls: imageUrls,
+      category: (linked && linked.category) || 'Websites'
+    };
 
     if (study.placeholder) {
       const card = document.createElement('article');

@@ -343,6 +343,26 @@ document.addEventListener('DOMContentLoaded', () => {
         return actions;
     };
 
+    // Remove PKR / USD / fee figures from journey case-study copy (Firestore may still store old amounts).
+    window.stripProjectPrices = function(text) {
+        if (!text) return '';
+        let s = String(text);
+        s = s.replace(/\b\d{1,3}(?:,\d{3})+(?:\.\d+)?\s*PKR\b/gi, '');
+        s = s.replace(/\b\d+(?:\.\d+)?\s*PKR\b/gi, '');
+        s = s.replace(/\$\s?\d{1,3}(?:,\d{3})*(?:\+)?/g, '');
+        s = s.replace(/\b\d{1,3}(?:\.\d+)?k(?:\s*\+\s*\d{1,3}(?:\.\d+)?k)+\b/gi, '');
+        s = s.replace(/\([^)]*(?:PKR|USD|\$|\d{1,3}k|domain cost)[^)]*\)/gi, '');
+        s = s.replace(/\b(?:only\s+)?(?:received|paid|pending|advance)\b[^.]*?(?:PKR|USD|\d{1,3}k)[^.]*\.?/gi, '');
+        s = s.replace(/\bsettled at\b[^.]*\.?/gi, '');
+        s = s.replace(/\bquoted\b[^.]*?\bPKR\b[^.]*\.?/gi, '');
+        s = s.replace(/\(\s*\)/g, '');
+        s = s.replace(/\s{2,}/g, ' ');
+        s = s.replace(/\s+([.,;:])/g, '$1');
+        s = s.replace(/([.!?])\s*[.,;:]+/g, '$1');
+        s = s.replace(/^[.\s,;:\-–—]+|[.\s,;:\-–—]+$/g, '');
+        return s.trim();
+    };
+
     window.createProjectSplitBlock = function(project, index, options) {
         options = options || {};
         const isInSubfolder = !!options.isInSubfolder;
@@ -384,9 +404,14 @@ document.addEventListener('DOMContentLoaded', () => {
         title.textContent = project.name || project.clientName || 'Untitled project';
         copy.appendChild(title);
 
-        const storyProblem = project.problem || project.challenge || '';
-        const storySolution = project.solution || '';
-        const storyOutcome = project.outcome || '';
+        let storyProblem = project.problem || project.challenge || '';
+        let storySolution = project.solution || '';
+        let storyOutcome = project.outcome || '';
+        if (mode === 'journey') {
+            storyProblem = window.stripProjectPrices(storyProblem);
+            storySolution = window.stripProjectPrices(storySolution);
+            storyOutcome = window.stripProjectPrices(storyOutcome);
+        }
         const hasStory = !!(storyProblem || storySolution || storyOutcome);
 
         if (mode === 'journey' || (mode === 'portfolio' && hasStory && (storyProblem || storySolution))) {
@@ -408,7 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 field.appendChild(p);
                 copy.appendChild(field);
             });
-            // Journey page: do not render price / project-value figures
+            // Never render price / PKR / USD project-value lines on Journey
         } else if (project.description) {
             const desc = document.createElement('p');
             desc.className = 'portfolio-desc';
@@ -520,7 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Never let empty Firestore fields wipe richer local portfolio/case-study data
                         [
                             'liveUrl', 'imageUrl', 'imageUrl2', 'imageUrls',
-                            'challenge', 'problem', 'solution', 'outcome', 'price',
+                            'challenge', 'problem', 'solution', 'outcome',
                             'clientName', 'description', 'technologies', 'techStack',
                             'name', 'industry', 'type', 'category'
                         ].forEach((key) => {
@@ -531,6 +556,19 @@ document.addEventListener('DOMContentLoaded', () => {
                                 merged[key] = local[key];
                             }
                         });
+                        // Prefer local story copy when remote still contains old fee/PKR amounts
+                        ['challenge', 'problem', 'solution', 'outcome'].forEach((key) => {
+                            const remote = data[key];
+                            const localVal = local[key];
+                            if (localVal && remote && /PKR|\$\d|\d{1,3}k\b/i.test(String(remote))) {
+                                merged[key] = localVal;
+                            } else if (merged[key] && typeof window.stripProjectPrices === 'function') {
+                                merged[key] = window.stripProjectPrices(merged[key]);
+                            }
+                        });
+                        // Never surface project prices from Firestore on the public site
+                        delete merged.price;
+                        delete merged.priceWhy;
                         bySlug[slug] = merged;
                     });
                     window.projectsData = Object.values(bySlug);
