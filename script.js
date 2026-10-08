@@ -3,14 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('loaderScreen');
     if (loader) {
         // Smooth transition out
-        setTimeout(() => {
+        requestAnimationFrame(() => {
             loader.style.opacity = '0';
             loader.style.pointerEvents = 'none';
-            setTimeout(() => {
-                loader.style.display = 'none';
-                loader.setAttribute('aria-hidden', 'true');
-            }, 400);
-        }, 500);
+            loader.style.display = 'none';
+            loader.setAttribute('aria-hidden', 'true');
+        });
     }
 
     // ===== NAV ACTIVE STATE BASED ON CURRENT URL =====
@@ -152,15 +150,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ===== FLOATING ORBS PARALLAX ON SCROLL =====
+    const parallaxElements = document.querySelectorAll('.orb');
+    let parallaxFrame = 0;
     window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.orb');
-        
-        parallaxElements.forEach((element, index) => {
-            const speed = (index + 1) * 0.08;
-            element.style.transform = `translateY(${scrolled * speed}px)`;
+        if (parallaxFrame) return;
+        parallaxFrame = requestAnimationFrame(() => {
+            const scrolled = window.pageYOffset;
+            parallaxElements.forEach((element, index) => {
+                element.style.transform = `translateY(${scrolled * (index + 1) * 0.08}px)`;
+            });
+            parallaxFrame = 0;
         });
-    });
+    }, { passive: true });
 
     // ===== CONTACT FORM (Realtime Database via firebase-public.js) =====
     const contactForm = document.getElementById('contactForm');
