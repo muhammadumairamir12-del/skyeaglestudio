@@ -1738,6 +1738,70 @@ footer {
     to { width: var(--skill-percent); }
 }
 
+/* Mobile performance pass: reduce expensive compositing and keep the first viewport light. */
+@media (max-width: 768px) {
+    .bg-container {
+        background: radial-gradient(circle at 20% 20%, rgba(0, 240, 255, 0.09), transparent 42%),
+                    radial-gradient(circle at 80% 80%, rgba(255, 0, 247, 0.08), transparent 42%);
+    }
+
+    .grid-overlay,
+    .orb,
+    .contact-sidebar,
+    nav,
+    .exp-card,
+    .demo-card,
+    .service-card,
+    .client-card,
+    .testimonial-card,
+    .contact-item,
+    .contact-form,
+    .skill-card {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .grid-overlay,
+    .orb,
+    .scroll-indicator,
+    .contact-sidebar {
+        display: none;
+    }
+
+    .hero {
+        min-height: 100svh;
+        padding-top: 92px;
+        padding-bottom: 56px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2rem, 10vw, 3.5rem);
+        line-height: 1.12;
+    }
+
+    .hero h2 {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .demos,
+    .services,
+    .experience,
+    .skills-section {
+        content-visibility: auto;
+        contain-intrinsic-size: 700px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
 .skill-card:nth-child(1) .skill-progress-fill { animation-delay: 0.1s; }
 .skill-card:nth-child(2) .skill-progress-fill { animation-delay: 0.2s; }
 .skill-card:nth-child(3) .skill-progress-fill { animation-delay: 0.3s; }
